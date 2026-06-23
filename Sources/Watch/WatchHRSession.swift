@@ -34,7 +34,7 @@ final class WatchHRSession: NSObject, ObservableObject {
         workoutSession?.end()
         builder?.endCollection(withEnd: end) { [weak self] _, _ in
             Task { @MainActor in
-                self?.builder?.finishWorkout { _, _ in }
+                await self?.finishWorkoutCollection()
             }
         }
         isActive = false
@@ -49,6 +49,17 @@ final class WatchHRSession: NSObject, ObservableObject {
         sendSummary(summary)
         sessionStart = nil
         hrSamples = []
+    }
+
+    private func finishWorkoutCollection() async {
+        guard let builder else { return }
+        if #available(watchOS 10.0, *) {
+            _ = try? await builder.finishWorkout()
+        } else {
+            await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+                builder.finishWorkout { _, _ in continuation.resume() }
+            }
+        }
     }
 
     private func requestHealthAuthorization(completion: @escaping (Bool) -> Void) {
@@ -111,7 +122,6 @@ final class WatchHRSession: NSObject, ObservableObject {
         }
     }
 
-    /// MainActor-isolated: only call from `Task { @MainActor in ... }` in query callbacks.
     private func processHRSamples(_ samples: [HKSample]?) {
         guard let sample = samples?.last as? HKQuantitySample else { return }
         let hr = sample.quantity.doubleValue(for: .count().unitDivided(by: .minute()))

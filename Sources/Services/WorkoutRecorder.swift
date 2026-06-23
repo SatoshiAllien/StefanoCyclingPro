@@ -90,11 +90,13 @@ final class WorkoutRecorder {
 
     private func startAltimeter() {
         guard CMAltimeter.isRelativeAltitudeAvailable() else { return }
-        altimeter.startRelativeAltitudeUpdates(to: queue) { [weak self] data, _ in
+        altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { [weak self] data, _ in
             guard let self, let data else { return }
             let alt = data.relativeAltitude.doubleValue
-            if self.baseAltitude == nil { self.baseAltitude = alt }
-            self._elevationM = max(0, alt - (self.baseAltitude ?? 0))
+            self.queue.async {
+                if self.baseAltitude == nil { self.baseAltitude = alt }
+                self._elevationM = max(0, alt - (self.baseAltitude ?? 0))
+            }
         }
     }
 

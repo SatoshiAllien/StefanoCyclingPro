@@ -42,8 +42,8 @@ final class AppState: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] hr in
                 guard let self else { return }
-                if hr > 0 { self.merger.watchHeartRate = hr }
-                self.merger.watchSessionActive = self.watchConnectivity.sessionActive
+                if hr > 0 { self.merger.updateWatchHeartRate(hr) }
+                self.merger.updateWatchSessionActive(self.watchConnectivity.sessionActive)
                 self.applyHeartRate()
             }
             .store(in: &cancellables)
@@ -52,7 +52,7 @@ final class AppState: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] active in
                 guard let self else { return }
-                self.merger.watchSessionActive = active
+                self.merger.updateWatchSessionActive(active)
                 self.watchHRConnected = active && self.merger.watchHeartRate > 0
                 self.applyHeartRate()
             }
@@ -76,7 +76,7 @@ final class AppState: ObservableObject {
                 liveMetrics.vo2Max = vo2
             }
             if let hr = await healthKit.fetchLatestHeartRate() {
-                merger.healthKitHeartRate = hr
+                merger.updateHealthKitHeartRate(hr)
                 applyHeartRate()
             }
         }
@@ -137,7 +137,7 @@ final class AppState: ObservableObject {
         guard isWorkoutActive else { return }
         guard merger.watchHeartRate <= 0, merger.bleHeartRate <= 0 else { return }
         if let hr = await healthKit.fetchLatestHeartRate(), hr > 0 {
-            merger.healthKitHeartRate = hr
+            merger.updateHealthKitHeartRate(hr)
             applyHeartRate()
         }
     }

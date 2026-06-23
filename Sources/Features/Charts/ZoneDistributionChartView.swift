@@ -19,20 +19,41 @@ struct ZoneDistributionChartView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .frame(height: 160)
+            } else if #available(iOS 17.0, *) {
+                zonePieChart
             } else {
-                Chart(slices) { slice in
-                    SectorMark(
-                        angle: .value("Time", slice.percentage),
-                        innerRadius: .ratio(0.55),
-                        angularInset: 1.5
-                    )
-                    .foregroundStyle(slice.zone.color)
-                    .cornerRadius(4)
-                }
-                .frame(height: 180)
-                .animation(.easeInOut(duration: 0.4), value: slices.count)
+                zoneBarChart
             }
         }
+    }
+
+    @available(iOS 17.0, *)
+    private var zonePieChart: some View {
+        Chart(slices) { slice in
+            SectorMark(
+                angle: .value("Time", slice.percentage),
+                innerRadius: .ratio(0.55),
+                angularInset: 1.5
+            )
+            .foregroundStyle(slice.zone.color)
+            .cornerRadius(4)
+        }
+        .frame(height: 180)
+        .animation(.easeInOut(duration: 0.4), value: slices.count)
+    }
+
+    private var zoneBarChart: some View {
+        Chart(slices) { slice in
+            BarMark(
+                x: .value("Zone", slice.zone.label),
+                y: .value("%", slice.percentage)
+            )
+            .foregroundStyle(slice.zone.color)
+            .cornerRadius(4)
+        }
+        .chartYAxisLabel("% time")
+        .frame(height: 180)
+        .animation(.easeInOut(duration: 0.4), value: slices.count)
     }
 }
 

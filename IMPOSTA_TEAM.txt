@@ -1,17 +1,22 @@
-FIRMA CODICE — OBBLIGATORIO per iPhone + Apple Watch
-=====================================================
+FIRMA CODICE — OBBLIGATORIO per iPhone 16 Pro + Apple Watch
+=============================================================
 
-1. Apri Config/Development.xcconfig
-2. Inserisci il tuo Team ID Apple:
-   DEVELOPMENT_TEAM = AB12CD34EF
+ERRORE: "Signing requires a development team"
 
-   (Trovalo su https://developer.apple.com/account → Membership)
+SOLUZIONE (scegli una):
 
-3. In Xcode: Product → Clean Build Folder (⇧⌘K)
-4. Build (⌘B)
+A) File xcconfig (consigliato):
+   1. Apri Config/Development.xcconfig
+   2. Inserisci: DEVELOPMENT_TEAM = IL_TUO_TEAM_ID
+   3. Clean (⇧⌘K) → Build (⌘B)
 
-Oppure in Xcode:
-- Target StefanoCyclingPro → Signing & Capabilities → Team
-- Target StefanoCyclingProWatch → Signing & Capabilities → Team
+B) In Xcode:
+   1. Target StefanoCyclingPro → Signing → Team → seleziona il tuo account
+   2. Target StefanoCyclingProWatch → Signing → Team → stesso account
+   3. Clean (⇧⌘K) → Build (⌘B)
 
-Senza Team ID vedrai: "requires a development team"
+Team ID: https://developer.apple.com/account → Membership
+
+Workflow invariato:
+   git pull origin main
+   open StefanoCyclingPro.xcodeproj

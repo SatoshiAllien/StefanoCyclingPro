@@ -5,13 +5,25 @@ struct MetricsMerger {
     private(set) var watchHeartRate: Double = 0
     private(set) var bleHeartRate: Double = 0
     private(set) var healthKitHeartRate: Double = 0
-    var watchSessionActive = false
+    private(set) var watchSessionActive = false
 
     mutating func reset() {
         watchHeartRate = 0
         bleHeartRate = 0
         healthKitHeartRate = 0
         watchSessionActive = false
+    }
+
+    mutating func updateWatchHeartRate(_ hr: Double) {
+        watchHeartRate = hr
+    }
+
+    mutating func updateHealthKitHeartRate(_ hr: Double) {
+        healthKitHeartRate = hr
+    }
+
+    mutating func updateWatchSessionActive(_ active: Bool) {
+        watchSessionActive = active
     }
 
     /// Priority: Apple Watch → BLE strap → HealthKit background HR.
