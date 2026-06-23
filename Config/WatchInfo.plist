@@ -24,6 +24,12 @@
 	<string>StefanoCyclingPro reads heart rate from Apple Watch during workouts.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>StefanoCyclingPro saves workout heart rate data to Apple Health.</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>StefanoCyclingPro accesses workout health data for live heart rate streaming.</string>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>com.stefanociancimino.StefanoCyclingPro</string>
 </dict>

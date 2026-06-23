@@ -2,24 +2,41 @@ import Foundation
 import Combine
 import HealthKit
 
+// MARK: - iOS 17-only HealthKit helpers (isolated to avoid availability warnings on iOS 16)
+
+@available(iOS 17.0, *)
+private enum HealthKitIOS17 {
+    static func cyclingPowerType() -> HKQuantityType? {
+        HKQuantityType.quantityType(forIdentifier: .cyclingPower)
+    }
+}
+
 @MainActor
 final class HealthKitService: ObservableObject {
     @Published private(set) var latestHeartRate: Double = 0
 
     private let store = HKHealthStore()
 
-    private static func buildReadTypes() -> Set<HKObjectType> {
+    private var readTypes: Set<HKObjectType> {
+        Self.makeReadTypes()
+    }
+
+    private var writeTypes: Set<HKSampleType> {
+        Self.makeWriteTypes()
+    }
+
+    private static func makeReadTypes() -> Set<HKObjectType> {
         var types = Set<HKObjectType>()
         let baseIds: [HKQuantityTypeIdentifier] = [
             .heartRate, .distanceCycling, .vo2Max, .activeEnergyBurned
         ]
-        baseIds.forEach { id in
+        for id in baseIds {
             if let type = HKQuantityType.quantityType(forIdentifier: id) {
                 types.insert(type)
             }
         }
         if #available(iOS 17.0, *) {
-            if let cyclingPower = HKQuantityType.quantityType(forIdentifier: .cyclingPower) {
+            if let cyclingPower = HealthKitIOS17.cyclingPowerType() {
                 types.insert(cyclingPower)
             }
         }
@@ -27,7 +44,7 @@ final class HealthKitService: ObservableObject {
         return types
     }
 
-    private static func buildWriteTypes() -> Set<HKSampleType> {
+    private static func makeWriteTypes() -> Set<HKSampleType> {
         var types = Set<HKSampleType>()
         types.insert(HKObjectType.workoutType())
         if let energy = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
@@ -39,8 +56,14 @@ final class HealthKitService: ObservableObject {
         return types
     }
 
-    private let readTypes = HealthKitService.buildReadTypes()
-    private let writeTypes = HealthKitService.buildWriteTypes()
+    /// Returns cycling power type on iOS 17+, nil on iOS 16 (safe fallback).
+    func cyclingPowerQuantityType() -> HKQuantityType? {
+        if #available(iOS 17.0, *) {
+            return HealthKitIOS17.cyclingPowerType()
+        } else {
+            return nil
+        }
+    }
 
     func requestAuthorization() async -> Bool {
         guard HKHealthStore.isHealthDataAvailable() else { return false }

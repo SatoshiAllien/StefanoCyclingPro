@@ -8,6 +8,7 @@ ios_sources = [
     "Sources/App/StefanoCyclingProApp.swift",
     "Sources/App/AppState.swift",
     "Sources/Models/CyclingWorkout.swift",
+    "Sources/Models/MetricsSample.swift",
     "Sources/Models/LiveMetrics.swift",
     "Sources/Models/PowerZone.swift",
     "Sources/Models/SensorDevice.swift",

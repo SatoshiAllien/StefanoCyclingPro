@@ -10,6 +10,7 @@
 		47409F2EB3C749DB3DF1313B /* StefanoCyclingProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D46FA0812C84DAEC4A9F37 /* StefanoCyclingProApp.swift */; };
 		A2665818AD9840D6374836F0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FE7E51BDF22C5BF547543 /* AppState.swift */; };
 		EF8389B19BB6B06B850BC2D7 /* CyclingWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C9E8EAB0EDA124B89B2049 /* CyclingWorkout.swift */; };
+		7870737FD045ADDBD1C93D60 /* MetricsSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0168B3D57C3CDF36241F26 /* MetricsSample.swift */; };
 		141CF45A3B2C9997309135A6 /* LiveMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB9EF0273863528BB1BCD /* LiveMetrics.swift */; };
 		131B5D0AB20D90E9F4D07161 /* PowerZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85B2E1E6DCF05F8198F657E /* PowerZone.swift */; };
 		EAB17D2EC3BB5B4050C4E018 /* SensorDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F417469E75B498AD88639764 /* SensorDevice.swift */; };
@@ -109,6 +110,7 @@
 		BECC0A23C49DB0D4242C2ECD /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Workout/WorkoutViewModel.swift; sourceTree = SOURCE_ROOT; };
 		20C9E8EAB0EDA124B89B2049 /* CyclingWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Models/CyclingWorkout.swift; sourceTree = SOURCE_ROOT; };
 		AB7AB9EF0273863528BB1BCD /* LiveMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Models/LiveMetrics.swift; sourceTree = SOURCE_ROOT; };
+		EE0168B3D57C3CDF36241F26 /* MetricsSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Models/MetricsSample.swift; sourceTree = SOURCE_ROOT; };
 		D85B2E1E6DCF05F8198F657E /* PowerZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Models/PowerZone.swift; sourceTree = SOURCE_ROOT; };
 		F417469E75B498AD88639764 /* SensorDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Models/SensorDevice.swift; sourceTree = SOURCE_ROOT; };
 		00E03CA736B33584797FDA52 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/HealthKitService.swift; sourceTree = SOURCE_ROOT; };
@@ -145,6 +147,7 @@
 				95D46FA0812C84DAEC4A9F37 /* StefanoCyclingProApp.swift */,
 				151FE7E51BDF22C5BF547543 /* AppState.swift */,
 				20C9E8EAB0EDA124B89B2049 /* CyclingWorkout.swift */,
+				EE0168B3D57C3CDF36241F26 /* MetricsSample.swift */,
 				AB7AB9EF0273863528BB1BCD /* LiveMetrics.swift */,
 				D85B2E1E6DCF05F8198F657E /* PowerZone.swift */,
 				F417469E75B498AD88639764 /* SensorDevice.swift */,
@@ -340,6 +343,7 @@
 				47409F2EB3C749DB3DF1313B /* StefanoCyclingProApp.swift in Sources */,
 				A2665818AD9840D6374836F0 /* AppState.swift in Sources */,
 				EF8389B19BB6B06B850BC2D7 /* CyclingWorkout.swift in Sources */,
+				7870737FD045ADDBD1C93D60 /* MetricsSample.swift in Sources */,
 				141CF45A3B2C9997309135A6 /* LiveMetrics.swift in Sources */,
 				131B5D0AB20D90E9F4D07161 /* PowerZone.swift in Sources */,
 				EAB17D2EC3BB5B4050C4E018 /* SensorDevice.swift in Sources */,

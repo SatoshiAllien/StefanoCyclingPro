@@ -11,27 +11,18 @@ final class WatchHRSession: NSObject, ObservableObject {
     private let healthStore = HKHealthStore()
     private var workoutSession: HKWorkoutSession?
     private var builder: HKLiveWorkoutBuilder?
+    private var anchoredQuery: HKAnchoredObjectQuery?
     private var sessionStart: Date?
     private var hrSamples: [Double] = []
+    private var lastSentHR = Date.distantPast
+    private let sendThrottle: TimeInterval = 1.0
 
     func start() {
         guard HKHealthStore.isHealthDataAvailable() else { return }
-        let config = HKWorkoutConfiguration()
-        config.activityType = .cycling
-        config.locationType = .indoor
-
-        do {
-            workoutSession = try HKWorkoutSession(healthStore: healthStore, configuration: config)
-            builder = workoutSession?.associatedWorkoutBuilder()
-            builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: config)
-            workoutSession?.delegate = self
-            builder?.delegate = self
-            sessionStart = Date()
-            hrSamples = []
-            workoutSession?.startActivity(with: Date())
-            builder?.beginCollection(withStart: Date()) { _, _ in }
-            isActive = true
-        } catch {}
+        requestHealthAuthorization { [weak self] authorized in
+            guard authorized else { return }
+            Task { @MainActor in self?.beginWorkoutSession() }
+        }
     }
 
     func stop() {
@@ -39,6 +30,7 @@ final class WatchHRSession: NSObject, ObservableObject {
         let duration = Int(end.timeIntervalSince(sessionStart ?? end))
         let avgHR = hrSamples.isEmpty ? heartRate : hrSamples.reduce(0, +) / Double(hrSamples.count)
 
+        stopAnchoredQuery()
         workoutSession?.end()
         builder?.endCollection(withEnd: end) { [weak self] _, _ in
             self?.builder?.finishWorkout { _, _ in }
@@ -57,10 +49,83 @@ final class WatchHRSession: NSObject, ObservableObject {
         hrSamples = []
     }
 
-    private func sendHR(_ hr: Double) {
+    private func requestHealthAuthorization(completion: @escaping (Bool) -> Void) {
+        guard let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) else {
+            completion(false)
+            return
+        }
+        let types: Set<HKSampleType> = [hrType, HKObjectType.workoutType()]
+        healthStore.requestAuthorization(toShare: types, read: types) { success, _ in
+            completion(success)
+        }
+    }
+
+    private func beginWorkoutSession() {
+        let config = HKWorkoutConfiguration()
+        config.activityType = .cycling
+        config.locationType = .indoor
+
+        do {
+            workoutSession = try HKWorkoutSession(healthStore: healthStore, configuration: config)
+            builder = workoutSession?.associatedWorkoutBuilder()
+            builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: config)
+            workoutSession?.delegate = self
+            builder?.delegate = self
+            sessionStart = Date()
+            hrSamples = []
+            workoutSession?.startActivity(with: Date())
+            builder?.beginCollection(withStart: Date()) { _, _ in }
+            startAnchoredHRQuery()
+            isActive = true
+        } catch {}
+    }
+
+    private func startAnchoredHRQuery() {
+        guard let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return }
+        let predicate = HKQuery.predicateForSamples(withStart: Date(), end: nil, options: .strictStartDate)
+        let query = HKAnchoredObjectQuery(
+            type: hrType,
+            predicate: predicate,
+            anchor: nil,
+            limit: HKObjectQueryNoLimit
+        ) { [weak self] _, samples, _, _, _ in
+            self?.processHRSamples(samples)
+        }
+        query.updateHandler = { [weak self] _, samples, _, _, _ in
+            self?.processHRSamples(samples)
+        }
+        healthStore.execute(query)
+        anchoredQuery = query
+    }
+
+    private func stopAnchoredQuery() {
+        if let anchoredQuery {
+            healthStore.stop(anchoredQuery)
+            self.anchoredQuery = nil
+        }
+    }
+
+    private func processHRSamples(_ samples: [HKSample]?) {
+        guard let sample = samples?.last as? HKQuantitySample else { return }
+        let hr = sample.quantity.doubleValue(for: .count().unitDivided(by: .minute()))
+        Task { @MainActor in
+            self.applyHeartRate(hr)
+        }
+    }
+
+    @MainActor
+    private func applyHeartRate(_ hr: Double) {
         guard hr > 0 else { return }
-        let payload: [String: Any] = ["heartRate": hr]
-        transmit(payload)
+        heartRate = hr
+        hrSamples.append(hr)
+        sendHR(hr)
+    }
+
+    private func sendHR(_ hr: Double) {
+        let now = Date()
+        guard now.timeIntervalSince(lastSentHR) >= sendThrottle else { return }
+        lastSentHR = now
+        transmit(["heartRate": hr])
     }
 
     private func sendSummary(_ model: WatchWorkoutModel) {
@@ -101,9 +166,7 @@ extension WatchHRSession: HKLiveWorkoutBuilderDelegate {
         let stats = workoutBuilder.statistics(for: hrType)
         let hr = stats?.mostRecentQuantity()?.doubleValue(for: .count().unitDivided(by: .minute())) ?? 0
         Task { @MainActor in
-            self.heartRate = hr
-            if hr > 0 { self.hrSamples.append(hr) }
-            self.sendHR(hr)
+            self.applyHeartRate(hr)
         }
     }
 

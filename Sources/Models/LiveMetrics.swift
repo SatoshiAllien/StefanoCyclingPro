@@ -30,38 +30,3 @@ struct LiveMetrics: Codable {
     var isPaused: Bool = false
 }
 
-struct MetricsSample: Identifiable, Codable, Hashable, Equatable {
-    let id: UUID
-    let timestamp: Date
-    let power: Double
-    let cadence: Double
-    let speedKmh: Double
-    let heartRate: Double
-
-    init(timestamp: Date, power: Double, cadence: Double, speedKmh: Double, heartRate: Double) {
-        self.id = UUID()
-        self.timestamp = timestamp
-        self.power = power
-        self.cadence = cadence
-        self.speedKmh = speedKmh
-        self.heartRate = heartRate
-    }
-
-    static func == (lhs: MetricsSample, rhs: MetricsSample) -> Bool {
-        lhs.id == rhs.id
-            && lhs.timestamp.timeIntervalSince1970 == rhs.timestamp.timeIntervalSince1970
-            && lhs.power == rhs.power
-            && lhs.cadence == rhs.cadence
-            && lhs.speedKmh == rhs.speedKmh
-            && lhs.heartRate == rhs.heartRate
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(timestamp.timeIntervalSince1970)
-        hasher.combine(power)
-        hasher.combine(cadence)
-        hasher.combine(speedKmh)
-        hasher.combine(heartRate)
-    }
-}

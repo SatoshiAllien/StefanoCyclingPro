@@ -8,8 +8,11 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     @Published var heartRate: Double = 0
     @Published var isReachable = false
     @Published var sessionActive = false
+    @Published var activationState: WCSessionActivationState = .notActivated
 
     private var session: WCSession?
+    private var lastHRReceived = Date.distantPast
+    private let hrThrottleInterval: TimeInterval = 1.0
 
     override init() {
         super.init()
@@ -27,6 +30,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
     func stopHRSession() {
         sessionActive = false
+        heartRate = 0
         send(["command": "stopHR"])
     }
 
@@ -41,14 +45,24 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 }
 
 extension WatchConnectivityManager: WCSessionDelegate {
-    nonisolated func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    nonisolated func session(
+        _ session: WCSession,
+        activationDidCompleteWith activationState: WCSessionActivationState,
+        error: Error?
+    ) {
         Task { @MainActor in
-            isReachable = session.isReachable
+            self.activationState = activationState
+            self.isReachable = session.isReachable
         }
     }
 
     nonisolated func sessionReachabilityDidChange(_ session: WCSession) {
-        Task { @MainActor in isReachable = session.isReachable }
+        Task { @MainActor in
+            isReachable = session.isReachable
+            if !session.isReachable, !sessionActive {
+                heartRate = 0
+            }
+        }
     }
 
     nonisolated func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
@@ -66,6 +80,9 @@ extension WatchConnectivityManager: WCSessionDelegate {
     @MainActor
     private func handlePayload(_ payload: [String: Any]) {
         if let hr = payload["heartRate"] as? Double, hr > 0 {
+            let now = Date()
+            guard now.timeIntervalSince(lastHRReceived) >= hrThrottleInterval else { return }
+            lastHRReceived = now
             heartRate = hr
         }
         if let summary = payload["workoutSummary"] as? [String: Any] {
