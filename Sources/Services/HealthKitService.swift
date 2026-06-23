@@ -8,11 +8,16 @@ final class HealthKitService: ObservableObject {
 
     private let readTypes: Set<HKObjectType> = {
         var types = Set<HKObjectType>()
-        let ids: [HKQuantityTypeIdentifier] = [
-            .heartRate, .distanceCycling, .vo2Max, .activeEnergyBurned, .cyclingPower
+        let baseIds: [HKQuantityTypeIdentifier] = [
+            .heartRate, .distanceCycling, .vo2Max, .activeEnergyBurned
         ]
-        ids.forEach { id in
+        baseIds.forEach { id in
             if let t = HKQuantityType.quantityType(forIdentifier: id) { types.insert(t) }
+        }
+        if #available(iOS 17.0, *) {
+            if let cyclingPower = HKQuantityType.quantityType(forIdentifier: .cyclingPower) {
+                types.insert(cyclingPower)
+            }
         }
         types.insert(HKObjectType.workoutType())
         return types
