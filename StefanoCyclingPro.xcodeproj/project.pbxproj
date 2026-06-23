@@ -138,6 +138,7 @@
 		EB2038C2D603440A2BB31957 /* WatchInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config/WatchInfo.plist; sourceTree = "<group>"; };
 		1E4825A4DEE3237E0A451F0D /* StefanoCyclingPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingPro.entitlements; sourceTree = "<group>"; };
 		240F39EF8AE46ADD66B4502E /* StefanoCyclingProWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingProWatch.entitlements; sourceTree = "<group>"; };
+		E504666C51CF26737FBC5B54 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Development.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -211,6 +212,7 @@
 				EB2038C2D603440A2BB31957 /* WatchInfo.plist */,
 				1E4825A4DEE3237E0A451F0D /* StefanoCyclingPro.entitlements */,
 				240F39EF8AE46ADD66B4502E /* StefanoCyclingProWatch.entitlements */,
+				E504666C51CF26737FBC5B54 /* Development.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -411,12 +413,11 @@
 /* Begin XCBuildConfiguration section */
 		DB73D596A313D0EF7994EC6C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E504666C51CF26737FBC5B54 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingPro.entitlements;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Config/Info.plist;
@@ -439,12 +440,11 @@
 		};
 		AE455172143D27DB87214116 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E504666C51CF26737FBC5B54 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingPro.entitlements;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Config/Info.plist;
@@ -467,12 +467,11 @@
 		};
 		0374831BB633DCB4F1B5B4CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E504666C51CF26737FBC5B54 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Config/WatchInfo.plist;

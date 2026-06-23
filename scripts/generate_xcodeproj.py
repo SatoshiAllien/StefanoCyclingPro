@@ -73,6 +73,7 @@ def main() -> None:
         "watch_debug", "watch_release", "proj_debug", "proj_release",
         "project_root", "root", "proxy", "dep_watch", "ios_resources",
         "watch_resources", "proj_configs", "embed_bf", "assets_ios", "assets_watch",
+        "dev_xcconfig",
     ]}
     for path in set(ios_sources + watch_sources):
         ids[path] = uid(path)
@@ -94,6 +95,7 @@ def main() -> None:
         f"\t\t{ids['watch_plist']} /* WatchInfo.plist */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config/WatchInfo.plist; sourceTree = \"<group>\"; }};",
         f"\t\t{ids['ios_ent']} /* StefanoCyclingPro.entitlements */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingPro.entitlements; sourceTree = \"<group>\"; }};",
         f"\t\t{ids['watch_ent']} /* StefanoCyclingProWatch.entitlements */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingProWatch.entitlements; sourceTree = \"<group>\"; }};",
+        f"\t\t{ids['dev_xcconfig']} /* Development.xcconfig */ = {{isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Development.xcconfig; sourceTree = \"<group>\"; }};",
     ]
 
     ios_bf = []
@@ -194,6 +196,7 @@ def main() -> None:
 \t\t\t\t{ids['watch_plist']} /* WatchInfo.plist */,
 \t\t\t\t{ids['ios_ent']} /* StefanoCyclingPro.entitlements */,
 \t\t\t\t{ids['watch_ent']} /* StefanoCyclingProWatch.entitlements */,
+\t\t\t\t{ids['dev_xcconfig']} /* Development.xcconfig */,
 \t\t\t);
 \t\t\tsourceTree = "<group>";
 \t\t}};
@@ -348,12 +351,11 @@ def main() -> None:
 /* Begin XCBuildConfiguration section */
 \t\t{ids['ios_debug']} /* Debug */ = {{
 \t\t\tisa = XCBuildConfiguration;
+\t\t\tbaseConfigurationReference = {ids['dev_xcconfig']} /* Development.xcconfig */;
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingPro.entitlements;
-\t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
-\t\t\t\tDEVELOPMENT_TEAM = "";
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
 \t\t\t\tINFOPLIST_FILE = Config/Info.plist;
@@ -376,12 +378,11 @@ def main() -> None:
 \t\t}};
 \t\t{ids['ios_release']} /* Release */ = {{
 \t\t\tisa = XCBuildConfiguration;
+\t\t\tbaseConfigurationReference = {ids['dev_xcconfig']} /* Development.xcconfig */;
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingPro.entitlements;
-\t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
-\t\t\t\tDEVELOPMENT_TEAM = "";
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
 \t\t\t\tINFOPLIST_FILE = Config/Info.plist;
@@ -404,12 +405,11 @@ def main() -> None:
 \t\t}};
 \t\t{ids['watch_debug']} /* Debug */ = {{
 \t\t\tisa = XCBuildConfiguration;
+\t\t\tbaseConfigurationReference = {ids['dev_xcconfig']} /* Development.xcconfig */;
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
-\t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
-\t\t\t\tDEVELOPMENT_TEAM = "";
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
 \t\t\t\tINFOPLIST_FILE = Config/WatchInfo.plist;
@@ -428,12 +428,11 @@ def main() -> None:
 \t\t}};
 \t\t{ids['watch_release']} /* Release */ = {{
 \t\t\tisa = XCBuildConfiguration;
+\t\t\tbaseConfigurationReference = {ids['dev_xcconfig']} /* Development.xcconfig */;
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
-\t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
-\t\t\t\tDEVELOPMENT_TEAM = "";
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
 \t\t\t\tINFOPLIST_FILE = Config/WatchInfo.plist;

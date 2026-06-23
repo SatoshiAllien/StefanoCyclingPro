@@ -1,0 +1,17 @@
+FIRMA CODICE — OBBLIGATORIO per iPhone + Apple Watch
+=====================================================
+
+1. Apri Config/Development.xcconfig
+2. Inserisci il tuo Team ID Apple:
+   DEVELOPMENT_TEAM = AB12CD34EF
+
+   (Trovalo su https://developer.apple.com/account → Membership)
+
+3. In Xcode: Product → Clean Build Folder (⇧⌘K)
+4. Build (⌘B)
+
+Oppure in Xcode:
+- Target StefanoCyclingPro → Signing & Capabilities → Team
+- Target StefanoCyclingProWatch → Signing & Capabilities → Team
+
+Senza Team ID vedrai: "requires a development team"

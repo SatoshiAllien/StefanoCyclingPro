@@ -33,7 +33,9 @@ final class WatchHRSession: NSObject, ObservableObject {
         stopAnchoredQuery()
         workoutSession?.end()
         builder?.endCollection(withEnd: end) { [weak self] _, _ in
-            self?.builder?.finishWorkout { _, _ in }
+            Task { @MainActor in
+                self?.builder?.finishWorkout { _, _ in }
+            }
         }
         isActive = false
 
@@ -89,10 +91,14 @@ final class WatchHRSession: NSObject, ObservableObject {
             anchor: nil,
             limit: HKObjectQueryNoLimit
         ) { [weak self] _, samples, _, _, _ in
-            self?.processHRSamples(samples)
+            Task { @MainActor in
+                self?.processHRSamples(samples)
+            }
         }
         query.updateHandler = { [weak self] _, samples, _, _, _ in
-            self?.processHRSamples(samples)
+            Task { @MainActor in
+                self?.processHRSamples(samples)
+            }
         }
         healthStore.execute(query)
         anchoredQuery = query
@@ -105,15 +111,13 @@ final class WatchHRSession: NSObject, ObservableObject {
         }
     }
 
+    /// MainActor-isolated: only call from `Task { @MainActor in ... }` in query callbacks.
     private func processHRSamples(_ samples: [HKSample]?) {
         guard let sample = samples?.last as? HKQuantitySample else { return }
         let hr = sample.quantity.doubleValue(for: .count().unitDivided(by: .minute()))
-        Task { @MainActor in
-            self.applyHeartRate(hr)
-        }
+        applyHeartRate(hr)
     }
 
-    @MainActor
     private func applyHeartRate(_ hr: Double) {
         guard hr > 0 else { return }
         heartRate = hr
