@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>StefanoCyclingProWatch</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -24,8 +24,6 @@
 	<string>StefanoCyclingPro reads heart rate from Apple Watch during workouts.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>StefanoCyclingPro saves workout heart rate data to Apple Health.</string>
-	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>StefanoCyclingPro accesses workout health data for live heart rate streaming.</string>
 	<key>WKBackgroundModes</key>
 	<array>
 		<string>workout-processing</string>

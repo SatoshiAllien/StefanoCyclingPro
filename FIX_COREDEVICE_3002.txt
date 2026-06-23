@@ -1,0 +1,222 @@
+FIX CoreDeviceError 3002 — StefanoCyclingPro
+==============================================
+
+Errore: Domain=com.apple.dt.CoreDeviceError Code=3002
+Fase: INSTALLAZIONE su iPhone fisico (build OK, deploy KO)
+
+QUICK FIX (10 passi — fai in ordine)
+------------------------------------
+1. iPhone: Impostazioni → Privacy e sicurezza → Modalità sviluppatore → ON (riavvia se richiesto)
+2. iPhone: collega via USB → sblocca → "Autorizza questo computer" → Attendere
+3. Xcode: Window → Devices and Simulators → device "Connected" e non "Preparing"
+4. Config/Development.xcconfig → DEVELOPMENT_TEAM = IL_TUO_TEAM_ID (10 caratteri)
+5. Xcode: target StefanoCyclingPro + StefanoCyclingProWatch → Signing → Team = stesso account, "Automatically manage signing" ON
+6. iPhone: elimina vecchia app StefanoCyclingPro se presente (icona → Rimuovi app)
+7. Terminale Mac: rm -rf ~/Library/Developer/Xcode/DerivedData/StefanoCyclingPro-*
+8. Xcode: Product → Clean Build Folder (⇧⌘K)
+9. Xcode: seleziona iPhone 16 Pro come destination (non Simulator)
+10. Xcode: Product → Run (⌘R)
+
+Se ancora 3002 → segui CHECKLIST COMPLETA sotto.
+
+
+CHECKLIST TECNICA STEP-BY-STEP
+------------------------------
+
+FASE A — DEVICE (5 min)
+-----------------------
+A1. Developer Mode
+    Dove: iPhone → Impostazioni → Privacy e sicurezza → Modalità sviluppatore
+    OK: toggle ON, iPhone riavviato
+    KO: toggle assente → aggiorna iOS a 16+ oppure installa prima un'app da Xcode una volta
+    Fix: attiva, riavvia, riprova install
+
+A2. Trust computer
+    Dove: popup iPhone al collegamento USB
+    OK: "Autorizza" / "Trust"
+    KO: nessun popup → scollega/ricollega, prova cavo diverso
+    Fix: Impostazioni → Generali → Trasferimento dati iPhone → Autorizza computer
+
+A3. Spazio libero
+    Dove: iPhone → Impostazioni → Generali → Spazio iPhone
+    OK: > 2 GB liberi
+    KO: memoria piena
+    Fix: libera spazio, riprova
+
+A4. Profilo MDM / aziendale
+    Dove: Impostazioni → Generali → VPN e gestione dispositivo
+    OK: nessun profilo che blocca app non firmate dal MDM
+    KO: profilo aziendale con restrizioni
+    Fix: dispositivo personale senza MDM, o chiedi whitelist al reparto IT
+
+A5. Versione iOS vs Xcode
+    Dove: Xcode → About Xcode; iPhone → Impostazioni → Generali → Info
+    OK: Xcode 15+ con iOS 16–18 sul device; Xcode 16 con iOS 18
+    KO: Xcode troppo vecchio per iOS sul device ("device not supported")
+    Fix: aggiorna Xcode da Mac App Store
+
+
+FASE B — FIRMA (10 min) ← CAUSA #1 per StefanoCyclingPro
+--------------------------------------------------------
+B1. Development Team impostato
+    Dove: Config/Development.xcconfig
+    OK: DEVELOPMENT_TEAM = AB12CD34EF (10 caratteri, no spazi)
+    KO: DEVELOPMENT_TEAM = (vuoto) → errore signing + spesso 3002
+    Fix: inserisci Team ID da https://developer.apple.com/account → Membership
+
+B2. Signing automatico entrambi i target
+    Dove: Xcode → target StefanoCyclingPro → Signing & Capabilities
+    OK: "Automatically manage signing" ✓, Team selezionato, nessun errore rosso
+    KO: "Signing requires a development team" o "No profiles found"
+    Fix: login Xcode → Settings → Accounts → Apple ID → Download Manual Profiles
+
+B3. Target Watch firmato
+    Dove: Xcode → target StefanoCyclingProWatch → Signing & Capabilities
+    OK: stesso Team dell'app iOS, bundle ID com.stefanociancimino.StefanoCyclingPro.watchkitapp
+    KO: Watch non firmato → install iOS fallisce perché embeds Watch app
+    Fix: stesso Team, rigenera profili
+
+B4. Capabilities vs Entitlements
+    Dove: Signing & Capabilities + Config/*.entitlements
+    OK: HealthKit presente su ENTRAMBI i target; Bluetooth su iOS
+    KO: entitlement nel file ma capability non aggiunta in Xcode
+    Fix: + Capability → HealthKit su iOS e Watch
+
+B5. Device registrato nel team
+    Dove: Xcode → Settings → Accounts → [Team] → Manage Certificates → View Details / Devices
+    OK: il tuo iPhone compare nella lista
+    KO: device non registrato
+    Fix: collega iPhone, Xcode lo registra automaticamente con signing automatico ON
+
+B6. Bundle ID univoco e coerente
+    Dove: Build Settings → Product Bundle Identifier
+    OK:
+      iOS:  com.stefanociancimino.StefanoCyclingPro
+      Watch: com.stefanociancimino.StefanoCyclingPro.watchkitapp
+    KO: bundle ID cambiato a metà, o già usato da altro team
+    Fix: usa i bundle ID del progetto, oppure cambia entrambi e aggiorna WKCompanionAppBundleIdentifier
+
+
+FASE C — BUNDLE / Info.plist (5 min) ← BUG FIXATO nel commit
+------------------------------------------------------------
+C1. Plist corretto per target
+    Dove: Config/Info.plist (iOS), Config/WatchInfo.plist (watch)
+    OK iOS: LSRequiresIPhoneOS, NSBluetooth*, UIBackgroundModes bluetooth-central
+    OK Watch: WKCompanionAppBundleIdentifier, WKBackgroundModes workout-processing
+    KO: plist scambiati (era il bug: iOS aveva chiavi Watch e viceversa)
+    Fix: git pull — plists corretti nel repo
+
+C2. CFBundleExecutable
+    Dove: Info.plist → CFBundleExecutable
+    OK: $(EXECUTABLE_NAME) — risolve a StefanoCyclingPro / StefanoCyclingProWatch
+    KO: nome hardcoded diverso dal target
+    Fix: lascia $(EXECUTABLE_NAME)
+
+C3. CFBundleName esplicito (fix noto Xcode 15+)
+    Dove: Info.plist
+    OK: stringa fissa senza spazi strani, es. StefanoCyclingPro
+    KO: $(PRODUCT_NAME) che risolve male su alcuni Xcode
+    Fix: già impostato a nome fisso nel progetto
+
+C4. Versioni bundle
+    Dove: Build Settings → Marketing Version / Current Project Version
+    OK: 1.0.0 / 1 (entrambi i target uguali)
+    KO: versione vuota o 0
+    Fix: imposta 1.0.0 e 1
+
+C5. Watch embedded correttamente
+    Dove: target iOS → Build Phases → Embed Watch Content
+    OK: StefanoCyclingProWatch.app presente
+    KO: fase embed mancante
+    Fix: non rimuovere; rigenera progetto con python3 scripts/generate_xcodeproj.py se necessario
+
+
+FASE D — CACHE E CONFLITTI (5 min)
+----------------------------------
+D1. DerivedData
+    OK: cartella pulita dopo rm -rf
+    Fix: vedi comandi sotto
+
+D2. Vecchia app sul device
+    OK: nessuna installazione precedente con stesso bundle ID e team diverso
+    KO: app installata da altro account Apple
+    Fix: elimina app dall'iPhone, riprova
+
+D3. Provisioning profiles obsoleti
+    Dove: ~/Library/MobileDevice/Provisioning Profiles/
+    Fix: Xcode → Settings → Accounts → Download Manual Profiles
+         oppure: rm ~/Library/MobileDevice/Provisioning\ Profiles/* (Xcode li rigenera)
+
+D4. CoreDevice cache
+    Fix: killall -9 com.apple.CoreDevice.CoreDeviceService 2>/dev/null; riavvia Xcode
+
+
+COMANDI TERMINAL (Mac)
+----------------------
+# Pulisci build StefanoCyclingPro
+cd ~/StefanoCyclingPro
+rm -rf ~/Library/Developer/Xcode/DerivedData/StefanoCyclingPro-*
+
+# Pulisci TUTTA la DerivedData (più aggressivo)
+rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+# Lista device collegati
+xcrun xctrace list devices
+
+# Info device specifico
+xcrun devicectl list devices
+
+# Elenca provisioning profiles installati
+ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+
+# Verifica firma del .app buildato (dopo build)
+codesign -dv --verbose=4 ~/Library/Developer/Xcode/DerivedData/StefanoCyclingPro-*/Build/Products/Debug-iphoneos/StefanoCyclingPro.app
+
+# Verifica entitlements nell'app firmata
+codesign -d --entitlements - ~/Library/Developer/Xcode/DerivedData/StefanoCyclingPro-*/Build/Products/Debug-iphoneos/StefanoCyclingPro.app
+
+# Reset servizio installazione device
+killall -9 com.apple.CoreDevice.CoreDeviceService 2>/dev/null
+killall -9 Xcode 2>/dev/null; open -a Xcode
+
+# Log installazione in tempo reale (mentre fai Run)
+log stream --predicate 'subsystem == "com.apple.dt.Xcode" OR process CONTAINS "CoreDevice"' --level debug
+
+
+DIAGNOSTICA AVANZATA
+--------------------
+Test 1 — Progetto vuoto
+    File → New → iOS App → stesso Team → Run su stesso iPhone
+    OK: app vuota si installa → problema è nel progetto StefanoCyclingPro
+    KO: anche vuota fallisce 3002 → problema device/Xcode/account
+
+Test 2 — Solo iOS senza Watch
+    Xcode → scheme StefanoCyclingPro → Edit Scheme → Build → deseleziona StefanoCyclingProWatch
+    Run
+    OK: iOS installa senza Watch → problema Watch signing/embed
+    KO: fallisce comunque → signing iOS o device
+
+Test 3 — Report completo Xcode
+    Window → Devices and Simulators → [iPhone] → Open Console
+    Cerca "CoreDeviceError" o "installd" durante Run
+
+Test 4 — Apple Developer Portal
+    developer.apple.com → Certificates, Identifiers & Profiles
+    Identifiers: com.stefanociancimino.StefanoCyclingPro con HealthKit
+    Devices: iPhone registrato
+    Profiles: iOS Team Provisioning Profile include device + HealthKit
+
+
+FIX AUTOMATICO NEL PROGETTO (già applicato)
+---------------------------------------------
+✓ Info.plist / WatchInfo.plist corretti (non più scambiati)
+✓ CFBundleName esplicito (non $(PRODUCT_NAME))
+✓ WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro
+✓ Development.xcconfig per DEVELOPMENT_TEAM
+✓ Embed Watch Content configurato
+✓ Entitlements HealthKit su iOS + Watch
+
+Tu devi solo:
+1. git pull origin main
+2. Impostare DEVELOPMENT_TEAM in Config/Development.xcconfig
+3. Clean + Run
