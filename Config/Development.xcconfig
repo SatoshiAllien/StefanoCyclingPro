@@ -1,4 +1,3 @@
-// Set your Apple Developer Team ID below (required for iPhone + Apple Watch builds).
-// Example: DEVELOPMENT_TEAM = AB12CD34EF
-DEVELOPMENT_TEAM =
+// Replace TEAMID_PLACEHOLDER with your 10-character Apple Developer Team ID.
+DEVELOPMENT_TEAM = TEAMID_PLACEHOLDER
 CODE_SIGN_STYLE = Automatic

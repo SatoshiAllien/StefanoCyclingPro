@@ -33,6 +33,6 @@
 		<string>workout-processing</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.stefanociancimino.StefanoCyclingPro</string>
+	<string>com.example.StefanoCyclingPro</string>
 </dict>
 </plist>

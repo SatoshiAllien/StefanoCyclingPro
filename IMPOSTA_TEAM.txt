@@ -1,45 +1,16 @@
-FIRMA CODICE — OBBLIGATORIO per iPhone 16 Pro + Apple Watch
-=============================================================
+FIRMA CODICE — iPhone + Apple Watch
+====================================
 
-ERRORE: "Signing requires a development team"
-ERRORE INSTALL: CoreDeviceError 3002 (spesso causato da Team vuoto)
-
-SOLUZIONE RAPIDA (Personal Team — es. Steven Cianci):
------------------------------------------------------
 1. Apri Config/Development.xcconfig
-2. Inserisci il Team ID (10 caratteri):
-   DEVELOPMENT_TEAM = IL_TUO_TEAM_ID
-3. In Xcode → Settings → Accounts → verifica Apple ID attivo
-4. Target StefanoCyclingPro → Signing → Team = "Steven Cianci (Personal Team)"
-5. Target StefanoCyclingProWatch → Signing → stesso Team
-6. ✓ Automatically manage signing su ENTRAMBI i target
-7. Clean (⇧⌘K) → Build (⌘B) → Run su iPhone fisico (⌘R)
+2. Sostituisci TEAMID_PLACEHOLDER con il tuo Team ID (10 caratteri)
+3. Xcode → entrambi i target → Signing → Automatically manage signing ON
+4. Clean (⇧⌘K) → Build (⌘B) → Run su iPhone (⌘R)
 
-Trova Team ID: https://developer.apple.com/account → Membership
+Bundle IDs:
+  iOS:     com.example.StefanoCyclingPro
+  watchOS: com.example.StefanoCyclingPro.watch
 
-BUNDLE IDENTIFIERS (non modificare senza motivo):
--------------------------------------------------
-iOS:     com.stefanociancimino.StefanoCyclingPro
-watchOS: com.stefanociancimino.StefanoCyclingPro.watchkitapp
-         (app watch unificata watchOS 10+ — extension embedded, nessun target separato)
-
-TARGET DA FIRMARE:
-------------------
-- StefanoCyclingPro          (iOS)
-- StefanoCyclingProWatch     (watchOS companion)
-
-WATCH Info.plist (obbligatorio per install):
---------------------------------------------
-Config/WatchInfo.plist deve avere:
-  WKApplication = true
-  WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro
-
-CAPABILITIES RICHIESTE:
------------------------
-- HealthKit (iOS + Watch)
-- Bluetooth (iOS, via Info.plist)
-
-Workflow invariato:
-   git clone https://github.com/SatoshiAllien/StefanoCyclingPro.git
-   cd StefanoCyclingPro
-   open StefanoCyclingPro.xcodeproj
+Workflow:
+  git clone https://github.com/SatoshiAllien/StefanoCyclingPro.git
+  cd StefanoCyclingPro
+  open StefanoCyclingPro.xcodeproj

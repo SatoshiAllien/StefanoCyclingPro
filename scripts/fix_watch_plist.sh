@@ -25,7 +25,7 @@ set_plist_string() {
 # installd accepts WKApplication OR WKWatchKitApp — set both for maximum compatibility.
 set_plist_bool "WKApplication"
 set_plist_bool "WKWatchKitApp"
-set_plist_string "WKCompanionAppBundleIdentifier" "com.stefanociancimino.StefanoCyclingPro"
+set_plist_string "WKCompanionAppBundleIdentifier" "com.example.StefanoCyclingPro"
 
 echo "Watch Info.plist install keys:"
 /usr/libexec/PlistBuddy -c "Print :WKApplication" "$PLIST"

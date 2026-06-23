@@ -72,7 +72,7 @@ B2. Signing automatico entrambi i target
 
 B3. Target Watch firmato
     Dove: Xcode → target StefanoCyclingProWatch → Signing & Capabilities
-    OK: stesso Team dell'app iOS, bundle ID com.stefanociancimino.StefanoCyclingPro.watchkitapp
+    OK: stesso Team dell'app iOS, bundle ID com.example.StefanoCyclingPro.watchkitapp
     KO: Watch non firmato → install iOS fallisce perché embeds Watch app
     Fix: stesso Team, rigenera profili
 
@@ -91,8 +91,8 @@ B5. Device registrato nel team
 B6. Bundle ID univoco e coerente
     Dove: Build Settings → Product Bundle Identifier
     OK:
-      iOS:  com.stefanociancimino.StefanoCyclingPro
-      Watch: com.stefanociancimino.StefanoCyclingPro.watchkitapp
+      iOS:  com.example.StefanoCyclingPro
+      Watch: com.example.StefanoCyclingPro.watchkitapp
     KO: bundle ID cambiato a metà, o già usato da altro team
     Fix: usa i bundle ID del progetto, oppure cambia entrambi e aggiorna WKCompanionAppBundleIdentifier
 
@@ -202,7 +202,7 @@ Test 3 — Report completo Xcode
 
 Test 4 — Apple Developer Portal
     developer.apple.com → Certificates, Identifiers & Profiles
-    Identifiers: com.stefanociancimino.StefanoCyclingPro con HealthKit
+    Identifiers: com.example.StefanoCyclingPro con HealthKit
     Devices: iPhone registrato
     Profiles: iOS Team Provisioning Profile include device + HealthKit
 
@@ -211,7 +211,7 @@ FIX AUTOMATICO NEL PROGETTO (già applicato)
 ---------------------------------------------
 ✓ Info.plist / WatchInfo.plist corretti (non più scambiati)
 ✓ CFBundleName esplicito (non $(PRODUCT_NAME))
-✓ WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro
+✓ WKCompanionAppBundleIdentifier = com.example.StefanoCyclingPro
 ✓ Development.xcconfig per DEVELOPMENT_TEAM
 ✓ Embed Watch Content configurato
 ✓ Entitlements HealthKit su iOS + Watch

@@ -33,13 +33,13 @@ ios_sources = [
     "Sources/Features/Sensors/SensorDetailView.swift",
     "Sources/Features/History/HistoryView.swift",
     "Sources/Features/History/HistoryViewModel.swift",
-    "Sources/Features/Charts/ChartThrottle.swift",
-    "Sources/Features/Charts/PowerChartView.swift",
-    "Sources/Features/Charts/HeartRateChartView.swift",
-    "Sources/Features/Charts/CadenceChartView.swift",
-    "Sources/Features/Charts/SpeedChartView.swift",
-    "Sources/Features/Charts/ZoneDistributionChartView.swift",
-    "Sources/Features/Charts/TrainingLoadChartView.swift",
+    "Sources/Charts/ChartThrottle.swift",
+    "Sources/Charts/PowerChartView.swift",
+    "Sources/Charts/HeartRateChartView.swift",
+    "Sources/Charts/CadenceChartView.swift",
+    "Sources/Charts/SpeedChartView.swift",
+    "Sources/Charts/ZoneDistributionChartView.swift",
+    "Sources/Charts/TrainingLoadChartView.swift",
     "Sources/UIComponents/GaugeView.swift",
     "Sources/UIComponents/ZoneIndicator.swift",
     "Sources/UIComponents/MetricCard.swift",
@@ -74,8 +74,11 @@ def main() -> None:
         "watch_debug", "watch_release", "proj_debug", "proj_release",
         "project_root", "root", "proxy", "dep_watch", "ios_resources",
         "watch_resources", "proj_configs", "embed_bf", "assets_ios", "assets_watch",
-        "dev_xcconfig", "watch_fix_plist",
+        "dev_xcconfig", "watch_fix_plist", "privacy_manifest",
     ]}
+
+    IOS_BUNDLE_ID = "com.example.StefanoCyclingPro"
+    WATCH_BUNDLE_ID = "com.example.StefanoCyclingPro.watch"
     for path in set(ios_sources + watch_sources):
         ids[path] = uid(path)
 
@@ -97,6 +100,7 @@ def main() -> None:
         f"\t\t{ids['ios_ent']} /* StefanoCyclingPro.entitlements */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingPro.entitlements; sourceTree = \"<group>\"; }};",
         f"\t\t{ids['watch_ent']} /* StefanoCyclingProWatch.entitlements */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingProWatch.entitlements; sourceTree = \"<group>\"; }};",
         f"\t\t{ids['dev_xcconfig']} /* Development.xcconfig */ = {{isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Development.xcconfig; sourceTree = \"<group>\"; }};",
+        f"\t\t{ids['privacy_manifest']} /* PrivacyInfo.xcprivacy */ = {{isa = PBXFileReference; lastKnownFileType = text.xml; path = Config/PrivacyInfo.xcprivacy; sourceTree = \"<group>\"; }};",
     ]
 
     ios_bf = []
@@ -138,6 +142,7 @@ def main() -> None:
 \t\t{ids['embed_bf']} /* StefanoCyclingProWatch.app in Embed Watch Content */ = {{isa = PBXBuildFile; fileRef = {ids['watch_app']} /* StefanoCyclingProWatch.app */; settings = {{ATTRIBUTES = (RemoveHeadersOnCopy, ); }}; }};
 \t\t{ids['assets_ios']} /* AppAssets.xcassets in Resources */ = {{isa = PBXBuildFile; fileRef = {ids['assets']} /* AppAssets.xcassets */; }};
 \t\t{ids['assets_watch']} /* WatchAssets.xcassets in Resources */ = {{isa = PBXBuildFile; fileRef = {ids['watch_assets']} /* WatchAssets.xcassets */; }};
+\t\t{uid('privacy_bf')} /* PrivacyInfo.xcprivacy in Resources */ = {{isa = PBXBuildFile; fileRef = {ids['privacy_manifest']} /* PrivacyInfo.xcprivacy */; }};
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +203,7 @@ def main() -> None:
 \t\t\t\t{ids['ios_ent']} /* StefanoCyclingPro.entitlements */,
 \t\t\t\t{ids['watch_ent']} /* StefanoCyclingProWatch.entitlements */,
 \t\t\t\t{ids['dev_xcconfig']} /* Development.xcconfig */,
+\t\t\t\t{ids['privacy_manifest']} /* PrivacyInfo.xcprivacy */,
 \t\t\t);
 \t\t\tsourceTree = "<group>";
 \t\t}};
@@ -310,6 +316,7 @@ def main() -> None:
 \t\t\tbuildActionMask = 2147483647;
 \t\t\tfiles = (
 \t\t\t\t{ids['assets_ios']} /* AppAssets.xcassets in Resources */,
+\t\t\t\t{uid('privacy_bf')} /* PrivacyInfo.xcprivacy in Resources */,
 \t\t\t);
 \t\t\trunOnlyForDeploymentPostprocessing = 0;
 \t\t}};
@@ -387,7 +394,7 @@ def main() -> None:
 \t\t\t\t\t"@executable_path/Frameworks",
 \t\t\t\t);
 \t\t\t\tMARKETING_VERSION = 1.0.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {IOS_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = iphoneos;
 \t\t\t\tSWIFT_EMIT_LOC_STRINGS = YES;
@@ -414,7 +421,7 @@ def main() -> None:
 \t\t\t\t\t"@executable_path/Frameworks",
 \t\t\t\t);
 \t\t\t\tMARKETING_VERSION = 1.0.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {IOS_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = iphoneos;
 \t\t\t\tSWIFT_EMIT_LOC_STRINGS = YES;
@@ -437,17 +444,17 @@ def main() -> None:
 \t\t\t\tINFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
 \t\t\t\tINFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
 \t\t\t\tINFOPLIST_KEY_WKApplication = YES;
-\t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+\t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = {IOS_BUNDLE_ID};
 \t\t\t\tINFOPLIST_KEY_WKWatchKitApp = YES;
 \t\t\t\tMARKETING_VERSION = 1.0.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {WATCH_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = watchos;
 \t\t\t\tSKIP_INSTALL = YES;
 \t\t\t\tSWIFT_EMIT_LOC_STRINGS = YES;
 \t\t\t\tSWIFT_VERSION = 5.0;
 \t\t\t\tTARGETED_DEVICE_FAMILY = 4;
-\t\t\t\tWATCHOS_DEPLOYMENT_TARGET = 10.0;
+\t\t\t\tWATCHOS_DEPLOYMENT_TARGET = 9.0;
 \t\t\t}};
 \t\t\tname = Debug;
 \t\t}};
@@ -465,17 +472,17 @@ def main() -> None:
 \t\t\t\tINFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
 \t\t\t\tINFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
 \t\t\t\tINFOPLIST_KEY_WKApplication = YES;
-\t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+\t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = {IOS_BUNDLE_ID};
 \t\t\t\tINFOPLIST_KEY_WKWatchKitApp = YES;
 \t\t\t\tMARKETING_VERSION = 1.0.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {WATCH_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = watchos;
 \t\t\t\tSKIP_INSTALL = YES;
 \t\t\t\tSWIFT_EMIT_LOC_STRINGS = YES;
 \t\t\t\tSWIFT_VERSION = 5.0;
 \t\t\t\tTARGETED_DEVICE_FAMILY = 4;
-\t\t\t\tWATCHOS_DEPLOYMENT_TARGET = 10.0;
+\t\t\t\tWATCHOS_DEPLOYMENT_TARGET = 9.0;
 \t\t\t}};
 \t\t\tname = Release;
 \t\t}};

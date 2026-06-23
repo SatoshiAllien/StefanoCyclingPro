@@ -35,13 +35,13 @@
 		38E7927327ADE496920F069D /* SensorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264138677C95ACE9DF56A62C /* SensorDetailView.swift */; };
 		C5CFB1324EEA8A40B555AC4C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B88CF8F3FF8360A7D68C37 /* HistoryView.swift */; };
 		46CDBA099D7D3A8ADADAF68D /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC12689CBF1349A8630948 /* HistoryViewModel.swift */; };
-		CF045D6E1D8F4D4DE5F67435 /* ChartThrottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABC8C161109DB0BF163CFF /* ChartThrottle.swift */; };
-		05116290FE1045D88FF49761 /* PowerChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8762A61A4A61453B633262EB /* PowerChartView.swift */; };
-		F81C0EBB3F242EAAA74D7C6A /* HeartRateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD3CBBB6A45D2F170634B7A /* HeartRateChartView.swift */; };
-		8A16A7826CC0B9CEE1C3BAE4 /* CadenceChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E110722DEFEF3B9956762 /* CadenceChartView.swift */; };
-		FAB6B75739C216B43E07CF59 /* SpeedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC459F0070E8D7A76C6A84 /* SpeedChartView.swift */; };
-		C632FC452D1B62809580035D /* ZoneDistributionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BFA3AC7BF91E3808B5900 /* ZoneDistributionChartView.swift */; };
-		C226AD9F5C24D0008AA0C054 /* TrainingLoadChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB79557081E9BBBA6C7B31D8 /* TrainingLoadChartView.swift */; };
+		05D282C1BDE1A0449D54CB1B /* ChartThrottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57740FFD225F748F4158D73C /* ChartThrottle.swift */; };
+		7EF4166C7DCD4413F0EF4E8C /* PowerChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE30048E3FA0E6F0A6CA83 /* PowerChartView.swift */; };
+		E86F9748F9D24EF1D5BD4599 /* HeartRateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EBE514B99229E7872855F /* HeartRateChartView.swift */; };
+		1982970D541BA0BBE6E20019 /* CadenceChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF809C3C2A5D8ABA1384C284 /* CadenceChartView.swift */; };
+		64F0EA3550EFEBFE6F070B08 /* SpeedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B7925AEE1C9D1F8B7F8B40 /* SpeedChartView.swift */; };
+		0D281C73904BBC2CDCF53417 /* ZoneDistributionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43B100B67B23D8D501B2609 /* ZoneDistributionChartView.swift */; };
+		21B35F287C8ECCB24B6B0C30 /* TrainingLoadChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AD4A09CEAF52CD65C329B8 /* TrainingLoadChartView.swift */; };
 		0FA293E485743EB5CD193A40 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1AD2F99B53A69EE0C8EA /* GaugeView.swift */; };
 		BE9F5B4E34075C0FFBE29742 /* ZoneIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E6BA331ADDBFE71B972ED /* ZoneIndicator.swift */; };
 		2C40D2B1CA88D4126BC715CB /* MetricCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B90A46DD0739A39F1CEC64 /* MetricCard.swift */; };
@@ -59,6 +59,7 @@
 		B6ADE059CD15801AB8E3709A /* StefanoCyclingProWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D36F72FA3DAA14AB601CBEA2 /* StefanoCyclingProWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C237BEC2962BF9F74FE0728F /* AppAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32BB636196F91ED59D7A4919 /* AppAssets.xcassets */; };
 		253EC2800D27AEAC87449AAE /* WatchAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 694D5C0119AE0A0D54C1FD83 /* WatchAssets.xcassets */; };
+		B06BF88EFF7622D5043A61D9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9A1D6DF4D8CC34B8565CF2BF /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,13 +95,13 @@
 		DD91C1CF62A535DF9A3BC94A /* SpeedCadenceProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Bluetooth/SpeedCadenceProfile.swift; sourceTree = SOURCE_ROOT; };
 		0A1E2FB817C987D41BE54A07 /* WahooKICKRProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Bluetooth/WahooKICKRProfile.swift; sourceTree = SOURCE_ROOT; };
 		1744B12B796C75B3A3029796 /* WahooSpeedplayProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Bluetooth/WahooSpeedplayProfile.swift; sourceTree = SOURCE_ROOT; };
-		7C6E110722DEFEF3B9956762 /* CadenceChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/CadenceChartView.swift; sourceTree = SOURCE_ROOT; };
-		70ABC8C161109DB0BF163CFF /* ChartThrottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/ChartThrottle.swift; sourceTree = SOURCE_ROOT; };
-		6DD3CBBB6A45D2F170634B7A /* HeartRateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/HeartRateChartView.swift; sourceTree = SOURCE_ROOT; };
-		8762A61A4A61453B633262EB /* PowerChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/PowerChartView.swift; sourceTree = SOURCE_ROOT; };
-		4AEC459F0070E8D7A76C6A84 /* SpeedChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/SpeedChartView.swift; sourceTree = SOURCE_ROOT; };
-		FB79557081E9BBBA6C7B31D8 /* TrainingLoadChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/TrainingLoadChartView.swift; sourceTree = SOURCE_ROOT; };
-		960BFA3AC7BF91E3808B5900 /* ZoneDistributionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/ZoneDistributionChartView.swift; sourceTree = SOURCE_ROOT; };
+		BF809C3C2A5D8ABA1384C284 /* CadenceChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Charts/CadenceChartView.swift; sourceTree = SOURCE_ROOT; };
+		57740FFD225F748F4158D73C /* ChartThrottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Charts/ChartThrottle.swift; sourceTree = SOURCE_ROOT; };
+		F59EBE514B99229E7872855F /* HeartRateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Charts/HeartRateChartView.swift; sourceTree = SOURCE_ROOT; };
+		03CE30048E3FA0E6F0A6CA83 /* PowerChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Charts/PowerChartView.swift; sourceTree = SOURCE_ROOT; };
+		72B7925AEE1C9D1F8B7F8B40 /* SpeedChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Charts/SpeedChartView.swift; sourceTree = SOURCE_ROOT; };
+		A4AD4A09CEAF52CD65C329B8 /* TrainingLoadChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Charts/TrainingLoadChartView.swift; sourceTree = SOURCE_ROOT; };
+		D43B100B67B23D8D501B2609 /* ZoneDistributionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Charts/ZoneDistributionChartView.swift; sourceTree = SOURCE_ROOT; };
 		F527AF0A4909D8D211266860 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Dashboard/DashboardView.swift; sourceTree = SOURCE_ROOT; };
 		6603B46D3D4620C9E72C82E4 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Dashboard/DashboardViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D5B88CF8F3FF8360A7D68C37 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/History/HistoryView.swift; sourceTree = SOURCE_ROOT; };
@@ -141,6 +142,7 @@
 		1E4825A4DEE3237E0A451F0D /* StefanoCyclingPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingPro.entitlements; sourceTree = "<group>"; };
 		240F39EF8AE46ADD66B4502E /* StefanoCyclingProWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingProWatch.entitlements; sourceTree = "<group>"; };
 		E504666C51CF26737FBC5B54 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Development.xcconfig; sourceTree = "<group>"; };
+		9A1D6DF4D8CC34B8565CF2BF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Config/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -175,13 +177,13 @@
 				264138677C95ACE9DF56A62C /* SensorDetailView.swift */,
 				D5B88CF8F3FF8360A7D68C37 /* HistoryView.swift */,
 				0FBC12689CBF1349A8630948 /* HistoryViewModel.swift */,
-				70ABC8C161109DB0BF163CFF /* ChartThrottle.swift */,
-				8762A61A4A61453B633262EB /* PowerChartView.swift */,
-				6DD3CBBB6A45D2F170634B7A /* HeartRateChartView.swift */,
-				7C6E110722DEFEF3B9956762 /* CadenceChartView.swift */,
-				4AEC459F0070E8D7A76C6A84 /* SpeedChartView.swift */,
-				960BFA3AC7BF91E3808B5900 /* ZoneDistributionChartView.swift */,
-				FB79557081E9BBBA6C7B31D8 /* TrainingLoadChartView.swift */,
+				57740FFD225F748F4158D73C /* ChartThrottle.swift */,
+				03CE30048E3FA0E6F0A6CA83 /* PowerChartView.swift */,
+				F59EBE514B99229E7872855F /* HeartRateChartView.swift */,
+				BF809C3C2A5D8ABA1384C284 /* CadenceChartView.swift */,
+				72B7925AEE1C9D1F8B7F8B40 /* SpeedChartView.swift */,
+				D43B100B67B23D8D501B2609 /* ZoneDistributionChartView.swift */,
+				A4AD4A09CEAF52CD65C329B8 /* TrainingLoadChartView.swift */,
 				A7AE1AD2F99B53A69EE0C8EA /* GaugeView.swift */,
 				B08E6BA331ADDBFE71B972ED /* ZoneIndicator.swift */,
 				35B90A46DD0739A39F1CEC64 /* MetricCard.swift */,
@@ -216,6 +218,7 @@
 				1E4825A4DEE3237E0A451F0D /* StefanoCyclingPro.entitlements */,
 				240F39EF8AE46ADD66B4502E /* StefanoCyclingProWatch.entitlements */,
 				E504666C51CF26737FBC5B54 /* Development.xcconfig */,
+				9A1D6DF4D8CC34B8565CF2BF /* PrivacyInfo.xcprivacy */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,7 +277,7 @@
 				00BC88F4BBF585BCEE2E0316 /* Sources */,
 				3CAE8BCEBBD0AE896AB6E903 /* Frameworks */,
 				B2B650B35625E216913DF7A1 /* Resources */,
-				F1A2B3C4D5E6789012345678 /* Fix Watch Info.plist */,
+				566DFDFFE567D7FFFD77A717 /* Fix Watch Info.plist */,
 			);
 			buildRules = (
 			);
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C237BEC2962BF9F74FE0728F /* AppAssets.xcassets in Resources */,
+				B06BF88EFF7622D5043A61D9 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +346,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F1A2B3C4D5E6789012345678 /* Fix Watch Info.plist */ = {
+		566DFDFFE567D7FFFD77A717 /* Fix Watch Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -392,13 +396,13 @@
 				38E7927327ADE496920F069D /* SensorDetailView.swift in Sources */,
 				C5CFB1324EEA8A40B555AC4C /* HistoryView.swift in Sources */,
 				46CDBA099D7D3A8ADADAF68D /* HistoryViewModel.swift in Sources */,
-				CF045D6E1D8F4D4DE5F67435 /* ChartThrottle.swift in Sources */,
-				05116290FE1045D88FF49761 /* PowerChartView.swift in Sources */,
-				F81C0EBB3F242EAAA74D7C6A /* HeartRateChartView.swift in Sources */,
-				8A16A7826CC0B9CEE1C3BAE4 /* CadenceChartView.swift in Sources */,
-				FAB6B75739C216B43E07CF59 /* SpeedChartView.swift in Sources */,
-				C632FC452D1B62809580035D /* ZoneDistributionChartView.swift in Sources */,
-				C226AD9F5C24D0008AA0C054 /* TrainingLoadChartView.swift in Sources */,
+				05D282C1BDE1A0449D54CB1B /* ChartThrottle.swift in Sources */,
+				7EF4166C7DCD4413F0EF4E8C /* PowerChartView.swift in Sources */,
+				E86F9748F9D24EF1D5BD4599 /* HeartRateChartView.swift in Sources */,
+				1982970D541BA0BBE6E20019 /* CadenceChartView.swift in Sources */,
+				64F0EA3550EFEBFE6F070B08 /* SpeedChartView.swift in Sources */,
+				0D281C73904BBC2CDCF53417 /* ZoneDistributionChartView.swift in Sources */,
+				21B35F287C8ECCB24B6B0C30 /* TrainingLoadChartView.swift in Sources */,
 				0FA293E485743EB5CD193A40 /* GaugeView.swift in Sources */,
 				BE9F5B4E34075C0FFBE29742 /* ZoneIndicator.swift in Sources */,
 				2C40D2B1CA88D4126BC715CB /* MetricCard.swift in Sources */,
@@ -452,7 +456,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.StefanoCyclingPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -479,7 +483,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.StefanoCyclingPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -502,17 +506,17 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
 				INFOPLIST_KEY_WKApplication = YES;
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.example.StefanoCyclingPro;
 				INFOPLIST_KEY_WKWatchKitApp = YES;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.StefanoCyclingPro.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -530,17 +534,17 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
 				INFOPLIST_KEY_WKApplication = YES;
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.example.StefanoCyclingPro;
 				INFOPLIST_KEY_WKWatchKitApp = YES;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.StefanoCyclingPro.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

@@ -2,7 +2,7 @@ import Foundation
 import CoreMotion
 
 final class WorkoutRecorder {
-    private let queue = DispatchQueue(label: "com.stefanociancimino.workout-recorder", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "com.example.workout-recorder", qos: .userInitiated)
 
     private var _startedAt: Date?
     private var _elapsed: TimeInterval = 0
