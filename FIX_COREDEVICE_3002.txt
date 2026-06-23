@@ -102,9 +102,9 @@ FASE C — BUNDLE / Info.plist (5 min) ← BUG FIXATO nel commit
 C1. Plist corretto per target
     Dove: Config/Info.plist (iOS), Config/WatchInfo.plist (watch)
     OK iOS: LSRequiresIPhoneOS, NSBluetooth*, UIBackgroundModes bluetooth-central
-    OK Watch: WKCompanionAppBundleIdentifier, WKBackgroundModes workout-processing
-    KO: plist scambiati (era il bug: iOS aveva chiavi Watch e viceversa)
-    Fix: git pull — plists corretti nel repo
+    OK Watch: WKApplication=true, WKCompanionAppBundleIdentifier, WKBackgroundModes
+    KO: "does not have WKWatchKitApp or WKApplication key set to true" → 3002
+    Fix: git pull — WatchInfo.plist deve contenere <key>WKApplication</key><true/>
 
 C2. CFBundleExecutable
     Dove: Info.plist → CFBundleExecutable

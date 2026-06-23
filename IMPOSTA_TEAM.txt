@@ -28,6 +28,12 @@ TARGET DA FIRMARE:
 - StefanoCyclingPro          (iOS)
 - StefanoCyclingProWatch     (watchOS companion)
 
+WATCH Info.plist (obbligatorio per install):
+--------------------------------------------
+Config/WatchInfo.plist deve avere:
+  WKApplication = true
+  WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro
+
 CAPABILITIES RICHIESTE:
 -----------------------
 - HealthKit (iOS + Watch)
