@@ -47,6 +47,7 @@
 		2C40D2B1CA88D4126BC715CB /* MetricCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B90A46DD0739A39F1CEC64 /* MetricCard.swift */; };
 		311492DAB0DA41E2F1658471 /* AnimatedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BEC84FCCC5D70A0E14FB92 /* AnimatedNumber.swift */; };
 		320554975F2B7DF6C76D3BB0 /* HRSourceIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD5D4C9238C4C1DADBE553 /* HRSourceIndicator.swift */; };
+		D70D3DA3500B2769EF02C0D0 /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0CDDFE1A82454F5B9DEE4 /* AppLogoView.swift */; };
 		2F7DC3C22731E9A6CBF66FC3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48691D3C50775C77088B45E9 /* Theme.swift */; };
 		163460FE9033980CC8299B49 /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DACFC379BB27DCF9DDA16E0 /* WatchApp.swift */; };
 		CCF9428509D967848DD6DD05 /* WatchAppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173E0076DB4556EB327F14D /* WatchAppExtension.swift */; };
@@ -119,6 +120,7 @@
 		D25F877A779490C89EB1D9B0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/StorageService.swift; sourceTree = SOURCE_ROOT; };
 		3B391999363A174BCAC39DE6 /* WorkoutRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/WorkoutRecorder.swift; sourceTree = SOURCE_ROOT; };
 		87BEC84FCCC5D70A0E14FB92 /* AnimatedNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/AnimatedNumber.swift; sourceTree = SOURCE_ROOT; };
+		1DD0CDDFE1A82454F5B9DEE4 /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/AppLogoView.swift; sourceTree = SOURCE_ROOT; };
 		A7AE1AD2F99B53A69EE0C8EA /* GaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/GaugeView.swift; sourceTree = SOURCE_ROOT; };
 		B4DD5D4C9238C4C1DADBE553 /* HRSourceIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/HRSourceIndicator.swift; sourceTree = SOURCE_ROOT; };
 		35B90A46DD0739A39F1CEC64 /* MetricCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/MetricCard.swift; sourceTree = SOURCE_ROOT; };
@@ -185,6 +187,7 @@
 				35B90A46DD0739A39F1CEC64 /* MetricCard.swift */,
 				87BEC84FCCC5D70A0E14FB92 /* AnimatedNumber.swift */,
 				B4DD5D4C9238C4C1DADBE553 /* HRSourceIndicator.swift */,
+				1DD0CDDFE1A82454F5B9DEE4 /* AppLogoView.swift */,
 				48691D3C50775C77088B45E9 /* Theme.swift */,
 			);
 			name = "iOS Sources";
@@ -382,6 +385,7 @@
 				2C40D2B1CA88D4126BC715CB /* MetricCard.swift in Sources */,
 				311492DAB0DA41E2F1658471 /* AnimatedNumber.swift in Sources */,
 				320554975F2B7DF6C76D3BB0 /* HRSourceIndicator.swift in Sources */,
+				D70D3DA3500B2769EF02C0D0 /* AppLogoView.swift in Sources */,
 				2F7DC3C22731E9A6CBF66FC3 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,12 +494,11 @@
 		};
 		F014C65426F04D5484087141 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E504666C51CF26737FBC5B54 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Config/WatchInfo.plist;

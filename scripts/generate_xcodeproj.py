@@ -45,6 +45,7 @@ ios_sources = [
     "Sources/UIComponents/MetricCard.swift",
     "Sources/UIComponents/AnimatedNumber.swift",
     "Sources/UIComponents/HRSourceIndicator.swift",
+    "Sources/UIComponents/AppLogoView.swift",
     "Sources/UIComponents/Theme.swift",
 ]
 

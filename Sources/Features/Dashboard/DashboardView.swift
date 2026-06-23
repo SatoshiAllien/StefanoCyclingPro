@@ -17,6 +17,9 @@ struct DashboardView: View {
             .background(Theme.background)
             .navigationTitle("StefanoCyclingPro")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    AppLogoView(size: 32)
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     HRSourceIndicator(
                         source: vm.metrics.heartRateSource,
