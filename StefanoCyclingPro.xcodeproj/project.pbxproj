@@ -274,6 +274,7 @@
 				00BC88F4BBF585BCEE2E0316 /* Sources */,
 				3CAE8BCEBBD0AE896AB6E903 /* Frameworks */,
 				B2B650B35625E216913DF7A1 /* Resources */,
+				F1A2B3C4D5E6789012345678 /* Fix Watch Info.plist */,
 			);
 			buildRules = (
 			);
@@ -339,6 +340,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F1A2B3C4D5E6789012345678 /* Fix Watch Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fix Watch Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "bash \"${SRCROOT}/scripts/fix_watch_plist.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		092565D054976A1E3DA977DF /* Sources */ = {
@@ -477,9 +496,14 @@
 				CODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Config/WatchInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StefanoCyclingPro;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
+				INFOPLIST_KEY_WKApplication = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+				INFOPLIST_KEY_WKWatchKitApp = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -500,9 +524,14 @@
 				CODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Config/WatchInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StefanoCyclingPro;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
+				INFOPLIST_KEY_WKApplication = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+				INFOPLIST_KEY_WKWatchKitApp = YES;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

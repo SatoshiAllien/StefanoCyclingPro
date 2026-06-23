@@ -26,6 +26,8 @@
 	<string>StefanoCyclingPro saves workout heart rate data to Apple Health.</string>
 	<key>WKApplication</key>
 	<true/>
+	<key>WKWatchKitApp</key>
+	<true/>
 	<key>WKBackgroundModes</key>
 	<array>
 		<string>workout-processing</string>

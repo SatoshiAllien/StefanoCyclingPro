@@ -74,7 +74,7 @@ def main() -> None:
         "watch_debug", "watch_release", "proj_debug", "proj_release",
         "project_root", "root", "proxy", "dep_watch", "ios_resources",
         "watch_resources", "proj_configs", "embed_bf", "assets_ios", "assets_watch",
-        "dev_xcconfig",
+        "dev_xcconfig", "watch_fix_plist",
     ]}
     for path in set(ios_sources + watch_sources):
         ids[path] = uid(path)
@@ -256,6 +256,7 @@ def main() -> None:
 \t\t\t\t{ids['watch_sources_phase']} /* Sources */,
 \t\t\t\t{ids['watch_frameworks']} /* Frameworks */,
 \t\t\t\t{ids['watch_resources']} /* Resources */,
+\t\t\t\t{ids['watch_fix_plist']} /* Fix Watch Info.plist */,
 \t\t\t);
 \t\t\tbuildRules = (
 \t\t\t);
@@ -321,6 +322,24 @@ def main() -> None:
 \t\t\trunOnlyForDeploymentPostprocessing = 0;
 \t\t}};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+\t\t{ids['watch_fix_plist']} /* Fix Watch Info.plist */ = {{
+\t\t\tisa = PBXShellScriptBuildPhase;
+\t\t\talwaysOutOfDate = 1;
+\t\t\tbuildActionMask = 2147483647;
+\t\t\tfiles = (
+\t\t\t);
+\t\t\tinputPaths = (
+\t\t\t);
+\t\t\tname = "Fix Watch Info.plist";
+\t\t\toutputPaths = (
+\t\t\t);
+\t\t\trunOnlyForDeploymentPostprocessing = 0;
+\t\t\tshellPath = /bin/bash;
+\t\t\tshellScript = "bash \\"${{SRCROOT}}/scripts/fix_watch_plist.sh\\"\\n";
+\t\t}};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 \t\t{ids['ios_sources_phase']} /* Sources */ = {{
@@ -412,9 +431,14 @@ def main() -> None:
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
 \t\t\t\tENABLE_PREVIEWS = YES;
-\t\t\t\tGENERATE_INFOPLIST_FILE = NO;
+\t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tINFOPLIST_FILE = Config/WatchInfo.plist;
 \t\t\t\tINFOPLIST_KEY_CFBundleDisplayName = StefanoCyclingPro;
+\t\t\t\tINFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
+\t\t\t\tINFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
+\t\t\t\tINFOPLIST_KEY_WKApplication = YES;
+\t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+\t\t\t\tINFOPLIST_KEY_WKWatchKitApp = YES;
 \t\t\t\tMARKETING_VERSION = 1.0.0;
 \t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,9 +459,14 @@ def main() -> None:
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
 \t\t\t\tENABLE_PREVIEWS = YES;
-\t\t\t\tGENERATE_INFOPLIST_FILE = NO;
+\t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tINFOPLIST_FILE = Config/WatchInfo.plist;
 \t\t\t\tINFOPLIST_KEY_CFBundleDisplayName = StefanoCyclingPro;
+\t\t\t\tINFOPLIST_KEY_NSHealthShareUsageDescription = "StefanoCyclingPro reads heart rate from Apple Watch during workouts.";
+\t\t\t\tINFOPLIST_KEY_NSHealthUpdateUsageDescription = "StefanoCyclingPro saves workout heart rate data to Apple Health.";
+\t\t\t\tINFOPLIST_KEY_WKApplication = YES;
+\t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.stefanociancimino.StefanoCyclingPro;
+\t\t\t\tINFOPLIST_KEY_WKWatchKitApp = YES;
 \t\t\t\tMARKETING_VERSION = 1.0.0;
 \t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = com.stefanociancimino.StefanoCyclingPro.watchkitapp;
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
