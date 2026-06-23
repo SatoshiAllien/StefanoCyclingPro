@@ -27,11 +27,11 @@ struct WorkoutView: View {
                             isWatchReachable: appState.watchConnectivity.isReachable
                         )
                     }
-                    PrimaryWorkoutButton("Stop Workout", color: .red) { vm.stop() }
+                    PrimaryWorkoutButton(title: "Stop Workout", color: .red) { vm.stop() }
                 } else {
                     Text("Ready to ride")
                         .font(.title2.bold())
-                    PrimaryWorkoutButton("Start Workout", color: Theme.neonGreen) { vm.start() }
+                    PrimaryWorkoutButton(title: "Start Workout", color: Theme.neonGreen) { vm.start() }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
