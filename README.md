@@ -128,9 +128,23 @@ StefanoCyclingPro/
 ## Bundle IDs
 
 - iOS: `com.stefanociancimino.StefanoCyclingPro`
-- watchOS: `com.stefanociancimino.StefanoCyclingPro.watchkitapp`
+- watchOS: `com.stefanociancimino.StefanoCyclingPro.watchkitapp` (unified watchOS 10+ app; extension embedded)
 
-Change these in Xcode if you use your own developer account.
+Set **Development Team** in `Config/Development.xcconfig` before building on device. See `IMPOSTA_TEAM.txt`.
+
+## Build checklist (zero errors)
+
+| Fix | File |
+|-----|------|
+| `PrimaryWorkoutButton(title:color:action:)` | `WorkoutView.swift` |
+| `OperationQueue.main` for CMAltimeter | `WorkoutRecorder.swift` |
+| Manual `Hashable`/`Equatable` | `CyclingWorkout.swift`, `MetricsSample.swift` |
+| `cyclingPower` iOS 17 `#available` | `HealthKitService.swift` |
+| `@MainActor` HR callbacks | `WatchHRSession.swift` |
+| `SectorMark` iOS 17 + `BarMark` fallback | `ZoneDistributionChartView.swift` |
+| `updateWatchHeartRate` / `updateHealthKitHeartRate` | `MetricsMerger.swift`, `AppState.swift` |
+| Async `finishWorkout()` | `WatchHRSession.swift` |
+| Info.plist iOS vs Watch separated | `Config/Info.plist`, `Config/WatchInfo.plist` |
 
 ## License
 

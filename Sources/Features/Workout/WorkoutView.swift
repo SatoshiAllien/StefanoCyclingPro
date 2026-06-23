@@ -46,6 +46,12 @@ struct PrimaryWorkoutButton: View {
     let color: Color
     let action: () -> Void
 
+    init(title: String, color: Color, action: @escaping () -> Void) {
+        self.title = title
+        self.color = color
+        self.action = action
+    }
+
     var body: some View {
         Button(action: action) {
             Text(title)

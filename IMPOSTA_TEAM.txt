@@ -2,21 +2,38 @@ FIRMA CODICE — OBBLIGATORIO per iPhone 16 Pro + Apple Watch
 =============================================================
 
 ERRORE: "Signing requires a development team"
+ERRORE INSTALL: CoreDeviceError 3002 (spesso causato da Team vuoto)
 
-SOLUZIONE (scegli una):
+SOLUZIONE RAPIDA (Personal Team — es. Steven Cianci):
+-----------------------------------------------------
+1. Apri Config/Development.xcconfig
+2. Inserisci il Team ID (10 caratteri):
+   DEVELOPMENT_TEAM = IL_TUO_TEAM_ID
+3. In Xcode → Settings → Accounts → verifica Apple ID attivo
+4. Target StefanoCyclingPro → Signing → Team = "Steven Cianci (Personal Team)"
+5. Target StefanoCyclingProWatch → Signing → stesso Team
+6. ✓ Automatically manage signing su ENTRAMBI i target
+7. Clean (⇧⌘K) → Build (⌘B) → Run su iPhone fisico (⌘R)
 
-A) File xcconfig (consigliato):
-   1. Apri Config/Development.xcconfig
-   2. Inserisci: DEVELOPMENT_TEAM = IL_TUO_TEAM_ID
-   3. Clean (⇧⌘K) → Build (⌘B)
+Trova Team ID: https://developer.apple.com/account → Membership
 
-B) In Xcode:
-   1. Target StefanoCyclingPro → Signing → Team → seleziona il tuo account
-   2. Target StefanoCyclingProWatch → Signing → Team → stesso account
-   3. Clean (⇧⌘K) → Build (⌘B)
+BUNDLE IDENTIFIERS (non modificare senza motivo):
+-------------------------------------------------
+iOS:     com.stefanociancimino.StefanoCyclingPro
+watchOS: com.stefanociancimino.StefanoCyclingPro.watchkitapp
+         (app watch unificata watchOS 10+ — extension embedded, nessun target separato)
 
-Team ID: https://developer.apple.com/account → Membership
+TARGET DA FIRMARE:
+------------------
+- StefanoCyclingPro          (iOS)
+- StefanoCyclingProWatch     (watchOS companion)
+
+CAPABILITIES RICHIESTE:
+-----------------------
+- HealthKit (iOS + Watch)
+- Bluetooth (iOS, via Info.plist)
 
 Workflow invariato:
-   git pull origin main
+   git clone https://github.com/SatoshiAllien/StefanoCyclingPro.git
+   cd StefanoCyclingPro
    open StefanoCyclingPro.xcodeproj

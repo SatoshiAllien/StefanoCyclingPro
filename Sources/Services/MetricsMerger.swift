@@ -1,5 +1,6 @@
 import Foundation
 
+/// Heart-rate and live-metrics merger (aka HeartRateMerger).
 /// Resolves live metric fields using sensor priority rules.
 struct MetricsMerger {
     private(set) var watchHeartRate: Double = 0
