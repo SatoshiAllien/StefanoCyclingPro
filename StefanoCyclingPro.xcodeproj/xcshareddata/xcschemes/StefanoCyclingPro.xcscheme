@@ -20,6 +20,20 @@
                ReferencedContainer = "container:StefanoCyclingPro.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "703A698638259F0A8FDBBA56"
+               BuildableName = "StefanoCyclingProWatch.app"
+               BlueprintName = "StefanoCyclingProWatch"
+               ReferencedContainer = "container:StefanoCyclingPro.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

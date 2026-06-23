@@ -79,6 +79,8 @@ def main() -> None:
 
     IOS_BUNDLE_ID = "com.example.StefanoCyclingPro"
     WATCH_BUNDLE_ID = "com.example.StefanoCyclingPro.watch"
+    MARKETING_VERSION = "2.0.0"
+    CURRENT_PROJECT_VERSION = "2"
     for path in set(ios_sources + watch_sources):
         ids[path] = uid(path)
 
@@ -382,7 +384,7 @@ def main() -> None:
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingPro.entitlements;
-\t\t\t\tCURRENT_PROJECT_VERSION = 1;
+\t\t\t\tCURRENT_PROJECT_VERSION = {CURRENT_PROJECT_VERSION};
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
 \t\t\t\tINFOPLIST_FILE = Config/Info.plist;
@@ -393,7 +395,7 @@ def main() -> None:
 \t\t\t\t\t"$(inherited)",
 \t\t\t\t\t"@executable_path/Frameworks",
 \t\t\t\t);
-\t\t\t\tMARKETING_VERSION = 1.0.0;
+\t\t\t\tMARKETING_VERSION = {MARKETING_VERSION};
 \t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {IOS_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = iphoneos;
@@ -409,7 +411,7 @@ def main() -> None:
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingPro.entitlements;
-\t\t\t\tCURRENT_PROJECT_VERSION = 1;
+\t\t\t\tCURRENT_PROJECT_VERSION = {CURRENT_PROJECT_VERSION};
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
 \t\t\t\tINFOPLIST_FILE = Config/Info.plist;
@@ -420,7 +422,7 @@ def main() -> None:
 \t\t\t\t\t"$(inherited)",
 \t\t\t\t\t"@executable_path/Frameworks",
 \t\t\t\t);
-\t\t\t\tMARKETING_VERSION = 1.0.0;
+\t\t\t\tMARKETING_VERSION = {MARKETING_VERSION};
 \t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {IOS_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = iphoneos;
@@ -436,7 +438,7 @@ def main() -> None:
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
-\t\t\t\tCURRENT_PROJECT_VERSION = 1;
+\t\t\t\tCURRENT_PROJECT_VERSION = {CURRENT_PROJECT_VERSION};
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tINFOPLIST_FILE = Config/WatchInfo.plist;
@@ -446,7 +448,7 @@ def main() -> None:
 \t\t\t\tINFOPLIST_KEY_WKApplication = YES;
 \t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = {IOS_BUNDLE_ID};
 \t\t\t\tINFOPLIST_KEY_WKWatchKitApp = YES;
-\t\t\t\tMARKETING_VERSION = 1.0.0;
+\t\t\t\tMARKETING_VERSION = {MARKETING_VERSION};
 \t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {WATCH_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = watchos;
@@ -464,7 +466,7 @@ def main() -> None:
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Config/StefanoCyclingProWatch.entitlements;
-\t\t\t\tCURRENT_PROJECT_VERSION = 1;
+\t\t\t\tCURRENT_PROJECT_VERSION = {CURRENT_PROJECT_VERSION};
 \t\t\t\tENABLE_PREVIEWS = YES;
 \t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tINFOPLIST_FILE = Config/WatchInfo.plist;
@@ -474,7 +476,7 @@ def main() -> None:
 \t\t\t\tINFOPLIST_KEY_WKApplication = YES;
 \t\t\t\tINFOPLIST_KEY_WKCompanionAppBundleIdentifier = {IOS_BUNDLE_ID};
 \t\t\t\tINFOPLIST_KEY_WKWatchKitApp = YES;
-\t\t\t\tMARKETING_VERSION = 1.0.0;
+\t\t\t\tMARKETING_VERSION = {MARKETING_VERSION};
 \t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = {WATCH_BUNDLE_ID};
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSDKROOT = watchos;
