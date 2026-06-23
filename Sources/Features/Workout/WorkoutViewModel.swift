@@ -5,6 +5,9 @@ final class WorkoutViewModel: ObservableObject {
     var isActive: Bool { appState.isWorkoutActive }
     var isPaused: Bool { appState.liveMetrics.isPaused }
     var elapsed: Int { appState.recorder.elapsedSeconds }
+    var heartRate: Double { appState.liveMetrics.heartRate }
+    var heartRateSourceLabel: String { appState.liveMetrics.heartRateSource.displayName }
+    var watchConnected: Bool { appState.watchHRConnected }
 
     private let appState: AppState
 

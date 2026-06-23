@@ -4,15 +4,19 @@ import HealthKit
 
 @MainActor
 final class HealthKitService: ObservableObject {
+    @Published private(set) var latestHeartRate: Double = 0
+
     private let store = HKHealthStore()
 
-    private let readTypes: Set<HKObjectType> = {
+    private static func buildReadTypes() -> Set<HKObjectType> {
         var types = Set<HKObjectType>()
         let baseIds: [HKQuantityTypeIdentifier] = [
             .heartRate, .distanceCycling, .vo2Max, .activeEnergyBurned
         ]
         baseIds.forEach { id in
-            if let t = HKQuantityType.quantityType(forIdentifier: id) { types.insert(t) }
+            if let type = HKQuantityType.quantityType(forIdentifier: id) {
+                types.insert(type)
+            }
         }
         if #available(iOS 17.0, *) {
             if let cyclingPower = HKQuantityType.quantityType(forIdentifier: .cyclingPower) {
@@ -21,19 +25,22 @@ final class HealthKitService: ObservableObject {
         }
         types.insert(HKObjectType.workoutType())
         return types
-    }()
+    }
 
-    private let writeTypes: Set<HKSampleType> = {
+    private static func buildWriteTypes() -> Set<HKSampleType> {
         var types = Set<HKSampleType>()
         types.insert(HKObjectType.workoutType())
         if let energy = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
             types.insert(energy)
         }
-        if let dist = HKQuantityType.quantityType(forIdentifier: .distanceCycling) {
-            types.insert(dist)
+        if let distance = HKQuantityType.quantityType(forIdentifier: .distanceCycling) {
+            types.insert(distance)
         }
         return types
-    }()
+    }
+
+    private let readTypes = HealthKitService.buildReadTypes()
+    private let writeTypes = HealthKitService.buildWriteTypes()
 
     func requestAuthorization() async -> Bool {
         guard HKHealthStore.isHealthDataAvailable() else { return false }
@@ -47,17 +54,31 @@ final class HealthKitService: ObservableObject {
 
     func fetchLatestVO2Max() async -> Double? {
         guard let vo2Type = HKQuantityType.quantityType(forIdentifier: .vo2Max) else { return nil }
+        return await fetchLatestQuantity(type: vo2Type, unit: HKUnit(from: "ml/kg*min"))
+    }
+
+    func fetchLatestHeartRate() async -> Double? {
+        guard let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return nil }
+        let value = await fetchLatestQuantity(
+            type: hrType,
+            unit: HKUnit.count().unitDivided(by: .minute())
+        )
+        if let value { latestHeartRate = value }
+        return value
+    }
+
+    private func fetchLatestQuantity(type: HKQuantityType, unit: HKUnit) async -> Double? {
         let sort = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
         return await withCheckedContinuation { continuation in
             let query = HKSampleQuery(
-                sampleType: vo2Type,
+                sampleType: type,
                 predicate: nil,
                 limit: 1,
                 sortDescriptors: [sort]
             ) { _, samples, _ in
                 let value = (samples?.first as? HKQuantitySample)?
                     .quantity
-                    .doubleValue(for: HKUnit(from: "ml/kg*min"))
+                    .doubleValue(for: unit)
                 continuation.resume(returning: value)
             }
             store.execute(query)
@@ -65,12 +86,18 @@ final class HealthKitService: ObservableObject {
     }
 
     func saveWorkout(_ workout: CyclingWorkout) async {
+        if #available(iOS 17.0, *) {
+            await saveWorkoutModern(workout)
+        } else {
+            await saveWorkoutLegacy(workout)
+        }
+    }
+
+    private func saveWorkoutLegacy(_ workout: CyclingWorkout) async {
         let energy = HKQuantity(unit: .kilocalorie(), doubleValue: workout.calories)
         let distance = HKQuantity(unit: .meter(), doubleValue: workout.distanceKm * 1000)
-        let workoutType = HKWorkoutActivityType.cycling
-
         let hkWorkout = HKWorkout(
-            activityType: workoutType,
+            activityType: .cycling,
             start: workout.startedAt,
             end: workout.endedAt,
             duration: Double(workout.durationSeconds),
@@ -78,7 +105,49 @@ final class HealthKitService: ObservableObject {
             totalDistance: distance,
             metadata: ["creator": "StefanoCyclingPro"]
         )
-
         try? await store.save(hkWorkout)
+    }
+
+    @available(iOS 17.0, *)
+    private func saveWorkoutModern(_ workout: CyclingWorkout) async {
+        let config = HKWorkoutConfiguration()
+        config.activityType = .cycling
+        config.locationType = .outdoor
+
+        let builder = HKWorkoutBuilder(healthStore: store, configuration: config, device: .local())
+        do {
+            try await builder.beginCollection(at: workout.startedAt)
+            var samples: [HKSample] = []
+            if workout.calories > 0,
+               let energyType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+                samples.append(HKQuantitySample(
+                    type: energyType,
+                    quantity: HKQuantity(unit: .kilocalorie(), doubleValue: workout.calories),
+                    start: workout.startedAt,
+                    end: workout.endedAt
+                ))
+            }
+            if workout.distanceKm > 0,
+               let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceCycling) {
+                samples.append(HKQuantitySample(
+                    type: distanceType,
+                    quantity: HKQuantity(unit: .meter(), doubleValue: workout.distanceKm * 1000),
+                    start: workout.startedAt,
+                    end: workout.endedAt
+                ))
+            }
+            if !samples.isEmpty {
+                try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                    builder.add(samples) { _, error in
+                        if let error { continuation.resume(throwing: error) }
+                        else { continuation.resume() }
+                    }
+                }
+            }
+            try await builder.endCollection(at: workout.endedAt)
+            _ = try await builder.finishWorkout()
+        } catch {
+            await saveWorkoutLegacy(workout)
+        }
     }
 }

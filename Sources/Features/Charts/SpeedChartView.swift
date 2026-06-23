@@ -6,7 +6,7 @@ struct SpeedChartView: View {
 
     var body: some View {
         chartCard("Speed") {
-            Chart(samples.suffix(120)) { s in
+            Chart(ChartThrottle.displaySamples(from: samples)) { s in
                 AreaMark(x: .value("T", s.timestamp), y: .value("km/h", s.speedKmh))
                     .foregroundStyle(Theme.neonPurple.opacity(0.4))
                 LineMark(x: .value("T", s.timestamp), y: .value("km/h", s.speedKmh))

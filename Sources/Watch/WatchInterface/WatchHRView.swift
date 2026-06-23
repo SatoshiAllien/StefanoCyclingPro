@@ -1,7 +1,8 @@
 import SwiftUI
 
-struct WatchContentView: View {
-    @EnvironmentObject var connectivity: WatchPhoneConnectivity
+#if os(watchOS)
+struct WatchHRView: View {
+    @EnvironmentObject var connectivity: WatchAppExtension
     @EnvironmentObject var hrSession: WatchHRSession
 
     var body: some View {
@@ -41,3 +42,4 @@ struct WatchContentView: View {
         return "Open StefanoCyclingPro on iPhone"
     }
 }
+#endif

@@ -2,6 +2,7 @@ import Foundation
 import WatchConnectivity
 import Combine
 
+#if os(iOS)
 @MainActor
 final class WatchConnectivityManager: NSObject, ObservableObject {
     @Published var heartRate: Double = 0
@@ -32,7 +33,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     private func send(_ message: [String: Any]) {
         guard let session else { return }
         if session.isReachable {
-            session.sendMessage(message, replyHandler: nil)
+            session.sendMessage(message, replyHandler: nil, errorHandler: nil)
         } else {
             session.transferUserInfo(message)
         }
@@ -40,7 +41,11 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 }
 
 extension WatchConnectivityManager: WCSessionDelegate {
-    nonisolated func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
+    nonisolated func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        Task { @MainActor in
+            isReachable = session.isReachable
+        }
+    }
 
     nonisolated func sessionReachabilityDidChange(_ session: WCSession) {
         Task { @MainActor in isReachable = session.isReachable }
@@ -60,13 +65,21 @@ extension WatchConnectivityManager: WCSessionDelegate {
 
     @MainActor
     private func handlePayload(_ payload: [String: Any]) {
-        if let hr = payload["heartRate"] as? Double {
+        if let hr = payload["heartRate"] as? Double, hr > 0 {
             heartRate = hr
+        }
+        if let summary = payload["workoutSummary"] as? [String: Any] {
+            handleWorkoutSummary(summary)
         }
     }
 
-    #if os(iOS)
+    @MainActor
+    private func handleWorkoutSummary(_ summary: [String: Any]) {
+        _ = summary["avgHeartRate"] as? Double
+        _ = summary["durationSeconds"] as? Int
+    }
+
     nonisolated func sessionDidBecomeInactive(_ session: WCSession) {}
     nonisolated func sessionDidDeactivate(_ session: WCSession) { session.activate() }
-    #endif
 }
+#endif

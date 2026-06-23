@@ -6,7 +6,7 @@ struct CadenceChartView: View {
 
     var body: some View {
         chartCard("Cadence") {
-            Chart(samples.suffix(120)) { s in
+            Chart(ChartThrottle.displaySamples(from: samples)) { s in
                 BarMark(x: .value("T", s.timestamp, unit: .second), y: .value("RPM", s.cadence))
                     .foregroundStyle(Theme.neonBlue.gradient)
             }

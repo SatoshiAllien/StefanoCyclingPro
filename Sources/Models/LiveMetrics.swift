@@ -1,7 +1,16 @@
 import Foundation
 
-enum HeartRateSource: String, Codable {
+enum HeartRateSource: String, Codable, Hashable {
     case ble, appleWatch, healthKit, unknown
+
+    var displayName: String {
+        switch self {
+        case .appleWatch: return "Watch"
+        case .ble: return "BLE"
+        case .healthKit: return "HealthKit"
+        case .unknown: return "—"
+        }
+    }
 }
 
 struct LiveMetrics: Codable {

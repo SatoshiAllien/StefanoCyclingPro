@@ -57,9 +57,11 @@ On first sensor scan, iOS prompts for Bluetooth access. Ensure Bluetooth is ON a
 1. Install **StefanoCyclingPro** on iPhone **and** Apple Watch (watch app installs with iOS app)
 2. Open the Watch app on iPhone → **My Watch → StefanoCyclingPro** → confirm it's installed
 3. On iPhone, start a **Workout** in StefanoCyclingPro
-4. The Watch app automatically receives `startHR` via WatchConnectivity and begins an HKWorkout session
-5. Live BPM streams to iPhone; dashboard shows **Watch** indicator when connected
-6. Stop the workout on iPhone — Watch ends the HR session and data syncs to HealthKit
+4. The watch companion (`Sources/Watch/`) receives `startHR` via WatchConnectivity and begins an `HKWorkoutSession`
+5. Live BPM streams to iPhone every second; UI shows **HR Source: Watch**
+6. Stop the workout on iPhone — Watch ends the session and syncs summary to HealthKit
+
+**HR priority:** Apple Watch → BLE strap → HealthKit background HR
 
 **Tip:** Keep both apps in the foreground during the first connection test.
 
@@ -104,13 +106,13 @@ StefanoCyclingPro/
 │   ├── Models/           # Workout, metrics, zones, sensors
 │   ├── Services/         # HealthKit, storage, recording, calculations
 │   ├── Bluetooth/        # CoreBluetooth + Wahoo/BLE profiles
-│   ├── Watch/            # WatchConnectivity (iOS) + HR session (watchOS)
+│   ├── Watch/            # WatchConnectivity, HR session, watchOS app
+│   │   └── WatchInterface/  # WatchHRView
 │   ├── Features/         # Dashboard, Workout, Sensors, History, Charts
-│   └── UIComponents/     # Gauges, zones, cards, theme
-├── StefanoCyclingProWatch/
-│   └── Sources/          # watchOS companion app
+│   └── UIComponents/     # Gauges, zones, cards, HR source indicator
 ├── Assets/
-│   └── AppAssets.xcassets
+│   ├── AppAssets.xcassets
+│   └── WatchAssets.xcassets
 └── Config/               # Info.plist, entitlements
 ```
 

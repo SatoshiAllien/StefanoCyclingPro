@@ -2,8 +2,9 @@ import Foundation
 import WatchConnectivity
 import Combine
 
+#if os(watchOS)
 @MainActor
-final class WatchPhoneConnectivity: NSObject, ObservableObject {
+final class WatchAppExtension: NSObject, ObservableObject {
     @Published var isPhoneReachable = false
 
     weak var hrSession: WatchHRSession?
@@ -17,8 +18,12 @@ final class WatchPhoneConnectivity: NSObject, ObservableObject {
     }
 }
 
-extension WatchPhoneConnectivity: WCSessionDelegate {
-    nonisolated func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+extension WatchAppExtension: WCSessionDelegate {
+    nonisolated func session(
+        _ session: WCSession,
+        activationDidCompleteWith activationState: WCSessionActivationState,
+        error: Error?
+    ) {
         Task { @MainActor in
             isPhoneReachable = session.isReachable
         }
@@ -51,3 +56,4 @@ extension WatchPhoneConnectivity: WCSessionDelegate {
         }
     }
 }
+#endif

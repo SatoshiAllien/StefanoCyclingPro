@@ -6,7 +6,7 @@ struct PowerChartView: View {
 
     var body: some View {
         chartCard("Power") {
-            Chart(samples.suffix(120)) { s in
+            Chart(ChartThrottle.displaySamples(from: samples)) { s in
                 LineMark(x: .value("T", s.timestamp), y: .value("W", s.power))
                     .foregroundStyle(Theme.neonGreen)
                     .interpolationMethod(.catmullRom)

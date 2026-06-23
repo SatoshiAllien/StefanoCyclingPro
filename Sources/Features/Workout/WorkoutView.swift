@@ -18,6 +18,15 @@ struct WorkoutView: View {
                     Text(String(format: "%.0f W", appState.liveMetrics.power))
                         .font(.system(size: 40, weight: .bold))
                         .foregroundStyle(Theme.neonGreen)
+                    HStack(spacing: 16) {
+                        Text(String(format: "%.0f bpm", vm.heartRate))
+                            .font(.title3.bold())
+                            .foregroundStyle(Theme.neonBlue)
+                        HRSourceIndicator(
+                            source: appState.liveMetrics.heartRateSource,
+                            isWatchReachable: appState.watchConnectivity.isReachable
+                        )
+                    }
                     PrimaryWorkoutButton("Stop Workout", color: .red) { vm.stop() }
                 } else {
                     Text("Ready to ride")

@@ -18,13 +18,10 @@ struct DashboardView: View {
             .navigationTitle("StefanoCyclingPro")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    HStack(spacing: 6) {
-                        Circle()
-                            .fill(appState.watchHRConnected ? Theme.neonGreen : .gray)
-                            .frame(width: 8, height: 8)
-                        Text(appState.watchHRConnected ? "Watch" : "No Watch")
-                            .font(.caption2)
-                    }
+                    HRSourceIndicator(
+                        source: vm.metrics.heartRateSource,
+                        isWatchReachable: appState.watchConnectivity.isReachable
+                    )
                 }
             }
             .task { await appState.requestPermissions() }
@@ -47,6 +44,9 @@ struct DashboardView: View {
             }
             ZoneIndicator(zone: vm.metrics.currentZone, heartRate: vm.metrics.heartRate)
                 .padding(.horizontal)
+            Text("HR Source: \(vm.heartRateSourceLabel)")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.secondary)
         }
         .padding()
     }

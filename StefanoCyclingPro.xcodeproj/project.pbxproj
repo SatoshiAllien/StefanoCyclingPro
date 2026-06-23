@@ -16,6 +16,7 @@
 		5376A4FDF7A33C6441D5CD1F /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E03CA736B33584797FDA52 /* HealthKitService.swift */; };
 		9D22A896265BDA00D8D4018A /* WorkoutRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B391999363A174BCAC39DE6 /* WorkoutRecorder.swift */; };
 		89747D604B4B74B94A7F7E1B /* MetricsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA54435CBE7706E73A9BC6 /* MetricsCalculator.swift */; };
+		B47DE36191CCFC6CF2C1C31E /* MetricsMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5B64CDCA2B60B946A3E86 /* MetricsMerger.swift */; };
 		323080FE27E0D1EC7F5AEC59 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25F877A779490C89EB1D9B0 /* StorageService.swift */; };
 		4872299EC7FD934EF4DA7DDE /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632645545FCD880C404DEF67 /* BluetoothManager.swift */; };
 		834AE7B3F65AF9D5056856A0 /* CyclingPowerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5362F8D63B1AEB00F6BC74 /* CyclingPowerProfile.swift */; };
@@ -33,6 +34,7 @@
 		38E7927327ADE496920F069D /* SensorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264138677C95ACE9DF56A62C /* SensorDetailView.swift */; };
 		C5CFB1324EEA8A40B555AC4C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B88CF8F3FF8360A7D68C37 /* HistoryView.swift */; };
 		46CDBA099D7D3A8ADADAF68D /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBC12689CBF1349A8630948 /* HistoryViewModel.swift */; };
+		CF045D6E1D8F4D4DE5F67435 /* ChartThrottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABC8C161109DB0BF163CFF /* ChartThrottle.swift */; };
 		05116290FE1045D88FF49761 /* PowerChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8762A61A4A61453B633262EB /* PowerChartView.swift */; };
 		F81C0EBB3F242EAAA74D7C6A /* HeartRateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD3CBBB6A45D2F170634B7A /* HeartRateChartView.swift */; };
 		8A16A7826CC0B9CEE1C3BAE4 /* CadenceChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E110722DEFEF3B9956762 /* CadenceChartView.swift */; };
@@ -43,11 +45,13 @@
 		BE9F5B4E34075C0FFBE29742 /* ZoneIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E6BA331ADDBFE71B972ED /* ZoneIndicator.swift */; };
 		2C40D2B1CA88D4126BC715CB /* MetricCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B90A46DD0739A39F1CEC64 /* MetricCard.swift */; };
 		311492DAB0DA41E2F1658471 /* AnimatedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BEC84FCCC5D70A0E14FB92 /* AnimatedNumber.swift */; };
+		320554975F2B7DF6C76D3BB0 /* HRSourceIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD5D4C9238C4C1DADBE553 /* HRSourceIndicator.swift */; };
 		2F7DC3C22731E9A6CBF66FC3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48691D3C50775C77088B45E9 /* Theme.swift */; };
-		0ADC6659D9B7986ED4F56877 /* StefanoCyclingProWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC460A48A2A102FC8D30B6E /* StefanoCyclingProWatchApp.swift */; };
-		E2B41C8435DBE399E518EF07 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77966D6290570869674BBC0A /* WatchContentView.swift */; };
-		4728074076517D9506F3CC10 /* WatchPhoneConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B2175F7BED66B2DB8AEFD /* WatchPhoneConnectivity.swift */; };
+		163460FE9033980CC8299B49 /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DACFC379BB27DCF9DDA16E0 /* WatchApp.swift */; };
+		CCF9428509D967848DD6DD05 /* WatchAppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173E0076DB4556EB327F14D /* WatchAppExtension.swift */; };
+		139FD9EB3DCECD8E00806789 /* WatchHRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C741058B0C6657119C891B /* WatchHRView.swift */; };
 		E09DD5DEA1E61B8836ABCF63 /* WatchHRSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2958314AEB16BAF6B889D893 /* WatchHRSession.swift */; };
+		46E606C88D172F228B079400 /* WatchWorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A96B12AB0FF572D852FC417 /* WatchWorkoutModel.swift */; };
 		5102FAF05AF96EB52568198F /* PowerZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85B2E1E6DCF05F8198F657E /* PowerZone.swift */; };
 		1C9F128F1E3596B11A07E3CF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48691D3C50775C77088B45E9 /* Theme.swift */; };
 		B6ADE059CD15801AB8E3709A /* StefanoCyclingProWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D36F72FA3DAA14AB601CBEA2 /* StefanoCyclingProWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -89,6 +93,7 @@
 		0A1E2FB817C987D41BE54A07 /* WahooKICKRProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Bluetooth/WahooKICKRProfile.swift; sourceTree = SOURCE_ROOT; };
 		1744B12B796C75B3A3029796 /* WahooSpeedplayProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Bluetooth/WahooSpeedplayProfile.swift; sourceTree = SOURCE_ROOT; };
 		7C6E110722DEFEF3B9956762 /* CadenceChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/CadenceChartView.swift; sourceTree = SOURCE_ROOT; };
+		70ABC8C161109DB0BF163CFF /* ChartThrottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/ChartThrottle.swift; sourceTree = SOURCE_ROOT; };
 		6DD3CBBB6A45D2F170634B7A /* HeartRateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/HeartRateChartView.swift; sourceTree = SOURCE_ROOT; };
 		8762A61A4A61453B633262EB /* PowerChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/PowerChartView.swift; sourceTree = SOURCE_ROOT; };
 		4AEC459F0070E8D7A76C6A84 /* SpeedChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Features/Charts/SpeedChartView.swift; sourceTree = SOURCE_ROOT; };
@@ -108,23 +113,25 @@
 		F417469E75B498AD88639764 /* SensorDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Models/SensorDevice.swift; sourceTree = SOURCE_ROOT; };
 		00E03CA736B33584797FDA52 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/HealthKitService.swift; sourceTree = SOURCE_ROOT; };
 		F1FA54435CBE7706E73A9BC6 /* MetricsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/MetricsCalculator.swift; sourceTree = SOURCE_ROOT; };
+		EAB5B64CDCA2B60B946A3E86 /* MetricsMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/MetricsMerger.swift; sourceTree = SOURCE_ROOT; };
 		D25F877A779490C89EB1D9B0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/StorageService.swift; sourceTree = SOURCE_ROOT; };
 		3B391999363A174BCAC39DE6 /* WorkoutRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Services/WorkoutRecorder.swift; sourceTree = SOURCE_ROOT; };
 		87BEC84FCCC5D70A0E14FB92 /* AnimatedNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/AnimatedNumber.swift; sourceTree = SOURCE_ROOT; };
 		A7AE1AD2F99B53A69EE0C8EA /* GaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/GaugeView.swift; sourceTree = SOURCE_ROOT; };
+		B4DD5D4C9238C4C1DADBE553 /* HRSourceIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/HRSourceIndicator.swift; sourceTree = SOURCE_ROOT; };
 		35B90A46DD0739A39F1CEC64 /* MetricCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/MetricCard.swift; sourceTree = SOURCE_ROOT; };
 		48691D3C50775C77088B45E9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/Theme.swift; sourceTree = SOURCE_ROOT; };
 		B08E6BA331ADDBFE71B972ED /* ZoneIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/UIComponents/ZoneIndicator.swift; sourceTree = SOURCE_ROOT; };
+		0DACFC379BB27DCF9DDA16E0 /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Watch/WatchApp.swift; sourceTree = SOURCE_ROOT; };
+		E173E0076DB4556EB327F14D /* WatchAppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Watch/WatchAppExtension.swift; sourceTree = SOURCE_ROOT; };
 		AD2C0D7284A3682811DE7F4A /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Watch/WatchConnectivityManager.swift; sourceTree = SOURCE_ROOT; };
 		2958314AEB16BAF6B889D893 /* WatchHRSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Watch/WatchHRSession.swift; sourceTree = SOURCE_ROOT; };
+		B9C741058B0C6657119C891B /* WatchHRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Watch/WatchInterface/WatchHRView.swift; sourceTree = SOURCE_ROOT; };
 		0A96B12AB0FF572D852FC417 /* WatchWorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Watch/WatchWorkoutModel.swift; sourceTree = SOURCE_ROOT; };
-		3BC460A48A2A102FC8D30B6E /* StefanoCyclingProWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StefanoCyclingProWatch/Sources/StefanoCyclingProWatchApp.swift; sourceTree = SOURCE_ROOT; };
-		77966D6290570869674BBC0A /* WatchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StefanoCyclingProWatch/Sources/WatchContentView.swift; sourceTree = SOURCE_ROOT; };
-		290B2175F7BED66B2DB8AEFD /* WatchPhoneConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StefanoCyclingProWatch/Sources/WatchPhoneConnectivity.swift; sourceTree = SOURCE_ROOT; };
 		83A64E7068237B02AB8D9D8B /* StefanoCyclingPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StefanoCyclingPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D36F72FA3DAA14AB601CBEA2 /* StefanoCyclingProWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StefanoCyclingProWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BB636196F91ED59D7A4919 /* AppAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets/AppAssets.xcassets; sourceTree = "<group>"; };
-		694D5C0119AE0A0D54C1FD83 /* WatchAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = StefanoCyclingProWatch/Assets/WatchAssets.xcassets; sourceTree = "<group>"; };
+		694D5C0119AE0A0D54C1FD83 /* WatchAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets/WatchAssets.xcassets; sourceTree = "<group>"; };
 		A0950D97B128121FEFE8D9A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config/Info.plist; sourceTree = "<group>"; };
 		EB2038C2D603440A2BB31957 /* WatchInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config/WatchInfo.plist; sourceTree = "<group>"; };
 		1E4825A4DEE3237E0A451F0D /* StefanoCyclingPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Config/StefanoCyclingPro.entitlements; sourceTree = "<group>"; };
@@ -144,6 +151,7 @@
 				00E03CA736B33584797FDA52 /* HealthKitService.swift */,
 				3B391999363A174BCAC39DE6 /* WorkoutRecorder.swift */,
 				F1FA54435CBE7706E73A9BC6 /* MetricsCalculator.swift */,
+				EAB5B64CDCA2B60B946A3E86 /* MetricsMerger.swift */,
 				D25F877A779490C89EB1D9B0 /* StorageService.swift */,
 				632645545FCD880C404DEF67 /* BluetoothManager.swift */,
 				EA5362F8D63B1AEB00F6BC74 /* CyclingPowerProfile.swift */,
@@ -161,6 +169,7 @@
 				264138677C95ACE9DF56A62C /* SensorDetailView.swift */,
 				D5B88CF8F3FF8360A7D68C37 /* HistoryView.swift */,
 				0FBC12689CBF1349A8630948 /* HistoryViewModel.swift */,
+				70ABC8C161109DB0BF163CFF /* ChartThrottle.swift */,
 				8762A61A4A61453B633262EB /* PowerChartView.swift */,
 				6DD3CBBB6A45D2F170634B7A /* HeartRateChartView.swift */,
 				7C6E110722DEFEF3B9956762 /* CadenceChartView.swift */,
@@ -171,6 +180,7 @@
 				B08E6BA331ADDBFE71B972ED /* ZoneIndicator.swift */,
 				35B90A46DD0739A39F1CEC64 /* MetricCard.swift */,
 				87BEC84FCCC5D70A0E14FB92 /* AnimatedNumber.swift */,
+				B4DD5D4C9238C4C1DADBE553 /* HRSourceIndicator.swift */,
 				48691D3C50775C77088B45E9 /* Theme.swift */,
 			);
 			name = "iOS Sources";
@@ -179,9 +189,9 @@
 		9F891AF20FFCF5BC4E15AE9D /* watchOS Sources */ = {
 			isa = PBXGroup;
 			children = (
-				3BC460A48A2A102FC8D30B6E /* StefanoCyclingProWatchApp.swift */,
-				77966D6290570869674BBC0A /* WatchContentView.swift */,
-				290B2175F7BED66B2DB8AEFD /* WatchPhoneConnectivity.swift */,
+				0DACFC379BB27DCF9DDA16E0 /* WatchApp.swift */,
+				E173E0076DB4556EB327F14D /* WatchAppExtension.swift */,
+				B9C741058B0C6657119C891B /* WatchHRView.swift */,
 				2958314AEB16BAF6B889D893 /* WatchHRSession.swift */,
 			);
 			name = "watchOS Sources";
@@ -336,6 +346,7 @@
 				5376A4FDF7A33C6441D5CD1F /* HealthKitService.swift in Sources */,
 				9D22A896265BDA00D8D4018A /* WorkoutRecorder.swift in Sources */,
 				89747D604B4B74B94A7F7E1B /* MetricsCalculator.swift in Sources */,
+				B47DE36191CCFC6CF2C1C31E /* MetricsMerger.swift in Sources */,
 				323080FE27E0D1EC7F5AEC59 /* StorageService.swift in Sources */,
 				4872299EC7FD934EF4DA7DDE /* BluetoothManager.swift in Sources */,
 				834AE7B3F65AF9D5056856A0 /* CyclingPowerProfile.swift in Sources */,
@@ -353,6 +364,7 @@
 				38E7927327ADE496920F069D /* SensorDetailView.swift in Sources */,
 				C5CFB1324EEA8A40B555AC4C /* HistoryView.swift in Sources */,
 				46CDBA099D7D3A8ADADAF68D /* HistoryViewModel.swift in Sources */,
+				CF045D6E1D8F4D4DE5F67435 /* ChartThrottle.swift in Sources */,
 				05116290FE1045D88FF49761 /* PowerChartView.swift in Sources */,
 				F81C0EBB3F242EAAA74D7C6A /* HeartRateChartView.swift in Sources */,
 				8A16A7826CC0B9CEE1C3BAE4 /* CadenceChartView.swift in Sources */,
@@ -363,6 +375,7 @@
 				BE9F5B4E34075C0FFBE29742 /* ZoneIndicator.swift in Sources */,
 				2C40D2B1CA88D4126BC715CB /* MetricCard.swift in Sources */,
 				311492DAB0DA41E2F1658471 /* AnimatedNumber.swift in Sources */,
+				320554975F2B7DF6C76D3BB0 /* HRSourceIndicator.swift in Sources */,
 				2F7DC3C22731E9A6CBF66FC3 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,10 +384,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ADC6659D9B7986ED4F56877 /* StefanoCyclingProWatchApp.swift in Sources */,
-				E2B41C8435DBE399E518EF07 /* WatchContentView.swift in Sources */,
-				4728074076517D9506F3CC10 /* WatchPhoneConnectivity.swift in Sources */,
+				163460FE9033980CC8299B49 /* WatchApp.swift in Sources */,
+				CCF9428509D967848DD6DD05 /* WatchAppExtension.swift in Sources */,
+				139FD9EB3DCECD8E00806789 /* WatchHRView.swift in Sources */,
 				E09DD5DEA1E61B8836ABCF63 /* WatchHRSession.swift in Sources */,
+				46E606C88D172F228B079400 /* WatchWorkoutModel.swift in Sources */,
 				5102FAF05AF96EB52568198F /* PowerZone.swift in Sources */,
 				1C9F128F1E3596B11A07E3CF /* Theme.swift in Sources */,
 			);
